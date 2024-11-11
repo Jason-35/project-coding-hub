@@ -7,7 +7,7 @@ import code_typing from "../assets/code_typing.svg"
 import connect from "../assets/connecting_teams.svg"
 import community from "../assets/friends_online.svg"
 function LandingPage() {
-    const genre: string[] = ["python", "java", "go", "javascript", "react", "vue", "angular", "rust", "ruby","c", "php", "postgres", "mongodb", "c#", "react", "springboot", "next.js", "c++", "Show All"]
+    const genre: string[] = ["python", "java", "go", "javascript", "react", "vue", "angular", "rust", "ruby","c", "php", "postgres", "mongodb", "c#", "react", "springboot", "next.js", "c++", "Show More"]
 
     return (
     <div>
@@ -17,8 +17,12 @@ function LandingPage() {
                 <li>Projects</li>
                 <li>About</li>
                 <li className="border-2 h-full border-orange-400"></li>
-                <li><Link to={"signup"} className="hover:underline">Join</Link></li>
-                <li><Link to={"login"} className="hover:underline text-orange-400">Sign In</Link></li>
+                <li>
+                    <Link to={"signup"} className="hover:underline">Join</Link>
+                </li>
+                <li>
+                    <Link to={"login"} className="hover:underline text-orange-400">Sign In</Link>
+                </li>
             </nav>
         </div>
 
@@ -60,7 +64,7 @@ function LandingPage() {
             </div>
             <div>
             </div>
-            <div className="w-1/4">
+            <div className="w-2/4">
                 {genre.map((genre) => (
                     <Chip label={genre} border_size="border-none"/>
                 ))}
