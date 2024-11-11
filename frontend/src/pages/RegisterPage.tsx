@@ -30,10 +30,10 @@ function RegisterPage() {
             <div className="self-center">
               <span>Register your account</span>
             </div>
-            <div className="flex flex-col self-center w-4/5 focus-within:border-orange-400 border-4 rounded-md border-transparent">
-              <div className="flex">
+            <div className="flex flex-col self-center w-4/5">
+              <div className={`flex ${errors.username ? "focus-within:border-red-500" : "focus-within:border-orange-400"} border-4 rounded-md border-transparent`}>
                 <div className="p-2 flex justify-center items-center bg-black">
-                  <User color="white" size={20}/>
+                  <User color="white" size={18}/>
                 </div>
                 <input 
                   {...register("username", { required: true} )}
@@ -41,46 +41,38 @@ function RegisterPage() {
                   type="text" 
                   placeholder="Username" />
               </div>
-              {errors.username && <div>need username!</div>}
+              {errors.username && <div className="text-red-500">Username required</div>}
             </div>
-            <div className="flex flex-col self-center w-4/5 border-4 rounded-md focus-within:border-orange-400 border-transparent">
-              <div className="flex">
+            <div className="flex flex-col self-center w-4/5">
+              <div className={`flex ${errors.email ? "focus-within:border-red-500" : "focus-within:border-orange-400"} border-4 rounded-md border-transparent`}>
               <div className="p-2 flex justify-center items-center bg-black">
-                <Mail color="white" size={20}/>
+                <Mail color="white" size={18}/>
               </div>
               <input 
-                {...register("email", { required: true} )}
-                className="self-center text-[18px] p-1 pl-3 w-full h-full outline-none" 
-                type="text" 
-                placeholder="Email" />
+                  {...register("email", { 
+                    required: true,
+                    pattern: {
+                    value: /\S+@\S+\.\S+/,
+                    message: "Not valid email",
+                  }} )}
+                  className="self-center text-[18px] p-1 pl-3 w-full h-full outline-none" 
+                  type="email" 
+                  placeholder="Email" />
               </div>
-                {errors.email && <div>need email!</div>}
+                {errors.email && <div className="text-red-500">{errors.email.message?.toString()}</div>}
             </div>
-            <div className="self-center flex flex-col w-4/5 border-4 rounded-md focus-within:border-orange-400 border-transparent">
-              <div className="flex">
+            <div className="self-center flex flex-col w-4/5">
+              <div className={`flex ${errors.password ? "focus-within:border-red-500" : "focus-within:border-orange-400"} border-4 rounded-md border-transparent`}>
                 <div className="p-2 flex justify-center items-center bg-black">
-                  <Lock color="white" size={20}/>
+                  <Lock color="white" size={18}/>
                 </div>
                 <input 
-                  {...register("password", { required: true} )}
-                  className="self-center text-[18px] p-1 pl-3 w-full h-full outline-none" 
-                  type="text" 
-                  placeholder="Password" />
+                    {...register("password", { required: true} )}
+                    className="self-center text-[18px] p-1 pl-3 w-full h-full outline-none" 
+                    type="text" 
+                    placeholder="Password" />
               </div>
-              {errors.password && <div>need password!</div>}
-            </div>
-            <div className="self-center flex flex-col w-4/5 border-4 rounded-md focus-within:border-orange-400 border-transparent">
-              <div className="flex">
-                <div className="p-2 flex justify-center items-center bg-black">
-                  <Lock color="white" size={20}/>
-                </div>
-                <input 
-                  {...register("confirm_password", { required: true} )}
-                  className="self-center text-[18px] p-1 pl-3 w-full h-full outline-none" 
-                  type="text" 
-                  placeholder="Confirm Password" />
-              </div>
-                {errors.confirm_password && <div>need password!</div>}
+              {errors.password && <div className="text-red-500">Password required</div>}
             </div>
             
             <button className="border-2 self-center w-4/5 p-2 rounded-md border-black hover:bg-orange-400 hover:text-white hover:border-orange-500">
