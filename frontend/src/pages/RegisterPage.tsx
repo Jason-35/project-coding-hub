@@ -13,7 +13,7 @@ function RegisterPage() {
       <div className="self-start ml-4">
         <Link to={"/"}><Logo /></Link>
       </div>
-      <div className="flex-1 flex justify-center items-center border-4">
+      <div className="flex-1 flex justify-center items-center">
           <Form 
             className="flex flex-col bg-zinc-100 rounded-md p-12 gap-6 w-1/3 shadow-2xl"
             action="/"
