@@ -9,7 +9,7 @@ import { useState } from "react"
 
 function LoginPage() {
     const { register, control, formState: { errors } } = useForm()
-    const [showText, setShowText] = useState<boolean>(true)
+    const [showText, setShowText] = useState<boolean>(false)
 
     const clickShowtext = () => {
         setShowText(!showText)
