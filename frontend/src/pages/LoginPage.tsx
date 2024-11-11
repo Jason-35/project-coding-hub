@@ -1,17 +1,18 @@
 import { Form, useForm } from "react-hook-form"
 
-import { Lock, User, Icon } from "lucide-react"
+import { Lock, User } from "lucide-react"
+import { Link } from "react-router-dom"
 
 import Logo from "../components/Logo"
 import Coding from "../assets/coding.svg"
-import { Link } from "react-router-dom"
+
 function LoginPage() {
   const { control } = useForm()
 
   return (
     <div className="w-screen h-screen py-4 px-2 flex flex-col shadow-lg">
       <div className="self-start ml-4">
-        <Logo />
+        <Link to={"/"}><Logo /></Link>
       </div>
       <div className="flex-1 flex justify-center items-center">
           <Form 

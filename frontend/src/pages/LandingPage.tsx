@@ -58,7 +58,7 @@ function LandingPage() {
                     that interests you!
                 </div>
                 <div className="text-[24px] leading-loose">
-                    There are many projects with different tech used <br/>
+                    Many projects with many tech <br/>
                     Search for projects you want to work on!
                 </div>
             </div>
@@ -78,9 +78,11 @@ function LandingPage() {
             <div className="text-[40px] leading-loose">
                 Connect with developers
                 <div className="text-[24px] leading-snug">
-                    Talk to others to help 
+                    Converse with others 
                     <br/> 
-                    Bring your ideas to life
+                    Create new ideas
+                    <br />
+                    Build them!
                 </div>
             </div>
         </div>
@@ -91,7 +93,7 @@ function LandingPage() {
                 <div className="text-[24px] leading-snug">
                     It's more fun coding with others
                     <br />
-                    Work and make something great!
+                    Work together to make something great!
                 </div>
             </div>
             <div className="w-1/3">
@@ -106,9 +108,11 @@ function LandingPage() {
                 Create Communities
                 <br/>
                 <div className="text-[24px] leading-snug">
-                    Come together to build ideas
+                    Meet like minded individual
                     <br/>
-                    Learn from each other and advance!
+                    Come together and build
+                    <br/>
+                    Learn and advance together!
                 </div>
             </div>
         </div>
