@@ -11,7 +11,7 @@ type ChipProps = {
 
 function Chip({bg_color, text_color, label, font_size, border_color, border_size, shape, margin} : ChipProps) {
   return (
-    <div className={`${bg_color} ${text_color} ${font_size} ${border_color} ${border_size} ${margin} ${shape} text-center inline-block p-2`}>
+    <div className={`${bg_color} ${text_color} ${font_size} ${border_color} ${border_size} ${margin} ${shape} text-center inline-block p-4`}>
       {label}
     </div>
   )
