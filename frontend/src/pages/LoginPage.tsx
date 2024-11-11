@@ -10,7 +10,7 @@ function LoginPage() {
   const { control } = useForm()
 
   return (
-    <div className="w-screen h-screen py-4 px-2 flex flex-col shadow-lg">
+    <div className="w-screen h-screen py-4 px-2 flex flex-col">
       <div className="self-start ml-4">
         <Link to={"/"}><Logo /></Link>
       </div>
