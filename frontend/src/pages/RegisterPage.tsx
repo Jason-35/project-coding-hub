@@ -1,17 +1,28 @@
-import { Form, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom"
 
 import { Lock, User, Mail, Eye, EyeOff } from "lucide-react"
 import Coding from "../assets/coding.svg"
 import Logo from "../components/Logo"
 import { useState } from "react"
+import axios from "axios"
 
 function RegisterPage() {
-    const { register, control, formState: { errors } } = useForm()
+    type FormValue = {
+        username: string,
+        password: string,
+        email: string
+    }
+    const { register, handleSubmit, formState: { errors } } = useForm<FormValue>()
     const [showText, setShowText] = useState<boolean>(true)
 
     const clickShowtext = () => {
         setShowText(!showText)
+    }
+
+    const formSubmit = (data: FormValue) => {
+        console.log("Submit form", data)
+        axios.post("http://localhost:8080/hello", {})
     }
 
     return (
@@ -20,13 +31,9 @@ function RegisterPage() {
             <Link to={"/"}><Logo /></Link>
         </div>
         <div className="flex-1 flex justify-center items-center">
-            <Form 
+            <form 
                 className="flex flex-col bg-zinc-100 rounded-md p-12 gap-6 w-1/3 shadow-2xl"
-                action="/"
-                control={control}
-                onSuccess={() => {
-                alert("success")
-                }}
+                onSubmit={handleSubmit(formSubmit)}
                 onError={() => {
                 alert("fail")
                 }}>
@@ -92,7 +99,7 @@ function RegisterPage() {
                 <div className="self-center">
                     Already have an account? <Link to={"/signup"} className="hover:underline">Sign In</Link>
                 </div>
-            </Form>
+            </form>
         </div>
     </div>
   )

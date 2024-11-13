@@ -1,4 +1,4 @@
-import { Form, useForm } from "react-hook-form"
+import { useForm } from "react-hook-form"
 
 import { Lock, User, Eye, EyeOff } from "lucide-react"
 import { Link } from "react-router-dom"
@@ -6,13 +6,24 @@ import { Link } from "react-router-dom"
 import Logo from "../components/Logo"
 import Coding from "../assets/coding.svg"
 import { useState } from "react"
+import axios from "axios"
 
 function LoginPage() {
-    const { register, control, formState: { errors } } = useForm()
+    type FormValue = {
+        username: string,
+        password: string
+    }
+
+    const { register, handleSubmit, formState: { errors } } = useForm<FormValue>()
     const [showText, setShowText] = useState<boolean>(false)
 
     const clickShowtext = () => {
         setShowText(!showText)
+    }
+
+    const formSubmit = (data: FormValue) => {
+        console.log("Submit form", data)
+        axios.post("http://localhost:8080/hello", {})
     }
 
     return (
@@ -21,15 +32,11 @@ function LoginPage() {
             <Link to={"/"}><Logo /></Link>
         </div>
         <div className="flex-1 flex justify-center items-center">
-            <Form 
+            <form 
                 className="flex flex-col bg-zinc-100 h-3/4 rounded-md p-12 gap-6 w-1/3 shadow-2xl"
-                action="/"
-                control={control}
-                onSuccess={() => {
-                alert("success")
-                }}
+                onSubmit={handleSubmit(formSubmit)}
                 onError={() => {
-                alert("fail")
+                    alert("fail")
                 }}>
                 <div className="bg-orange-400 w-2/5 rounded-full aspect-square flex self-center">
                     <img src={Coding} alt="" />
@@ -86,7 +93,7 @@ function LoginPage() {
                 <div className="self-center">
                 Not a member? <Link to={"/signup"} className="hover:underline">Create new account</Link>
                 </div>
-            </Form>
+            </form>
         </div>
     </div>
   )
