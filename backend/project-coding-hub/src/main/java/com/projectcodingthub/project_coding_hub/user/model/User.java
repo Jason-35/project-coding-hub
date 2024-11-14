@@ -34,9 +34,10 @@ public class User implements UserDetails {
     @SuppressWarnings("unused")
     private User(){}
 
-    public User(String username, String password) {
+    public User(String username, String password, String email) {
         this.username = username;
         this.password = password;
+        this.email = email;
     }
         
     public Integer getId() {
