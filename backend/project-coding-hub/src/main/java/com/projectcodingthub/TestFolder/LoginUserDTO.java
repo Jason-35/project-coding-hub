@@ -3,15 +3,15 @@ package com.projectcodingthub.TestFolder;
 public class LoginUserDTO {
     private String password;
     
-    private String email;
+    private String username;
 
-    public LoginUserDTO(String email, String password){
-        this.email = email;
+    public LoginUserDTO(String username, String password){
+        this.username = username;
         this.password = password;
     }
 
-    public String getEmail() {
-        return this.email;
+    public String getUsername() {
+        return this.username;
     }
 
     public String getPassword() {
