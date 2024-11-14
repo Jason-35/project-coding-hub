@@ -1,13 +1,13 @@
-package com.projectcodingthub.TestFolder;
+package com.projectcodingthub.project_coding_hub.user.dto;
 
-public class LoginResponse {
+public class TokenResponse {
     private String token;
 
     private long expiresIn;
 
-    public LoginResponse() {};
+    public TokenResponse() {};
 
-    public LoginResponse(String token, long expiresIn){
+    public TokenResponse(String token, long expiresIn){
         this.token = token;
         this.expiresIn = expiresIn;
     }

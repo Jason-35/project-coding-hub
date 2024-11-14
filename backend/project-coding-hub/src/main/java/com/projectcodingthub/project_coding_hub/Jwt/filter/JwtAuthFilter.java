@@ -1,4 +1,4 @@
-package com.projectcodingthub.project_coding_hub.config;
+package com.projectcodingthub.project_coding_hub.Jwt.filter;
 
 import java.io.IOException;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
-import com.projectcodingthub.project_coding_hub.service.JwtService;
+import com.projectcodingthub.project_coding_hub.Jwt.service.JwtService;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

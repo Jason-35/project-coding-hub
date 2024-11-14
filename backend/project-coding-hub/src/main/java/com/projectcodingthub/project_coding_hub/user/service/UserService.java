@@ -1,24 +1,24 @@
-package com.projectcodingthub.project_coding_hub.service;
+package com.projectcodingthub.project_coding_hub.user.service;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.projectcodingthub.TestFolder.LoginUserDTO;
-import com.projectcodingthub.TestFolder.RegisterUserDTO;
+import com.projectcodingthub.project_coding_hub.user.dto.LoginUserDTO;
+import com.projectcodingthub.project_coding_hub.user.dto.RegisterUserDTO;
 import com.projectcodingthub.project_coding_hub.user.model.User;
 import com.projectcodingthub.project_coding_hub.user.repository.UserRepository;
 
 @Service
-public class AuthService {
+public class UserService {
     private final UserRepository userRepository;
     
     private final PasswordEncoder passwordEncoder;
     
     private final AuthenticationManager authenticationManager;
 
-    public AuthService(
+    public UserService(
         UserRepository userRepository,
         AuthenticationManager authenticationManager,
         PasswordEncoder passwordEncoder
@@ -36,11 +36,9 @@ public class AuthService {
 
     public User authenticate(LoginUserDTO input) {
         authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
+            new UsernamePasswordAuthenticationToken(
                         input.getUsername(),
-                        input.getPassword()
-                )
-        );
+                        input.getPassword()));
 
         return userRepository.findByUsername(input.getUsername())
                 .orElseThrow();

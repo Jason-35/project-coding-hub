@@ -1,4 +1,4 @@
-package com.projectcodingthub.TestFolder;
+package com.projectcodingthub.project_coding_hub.user.dto;
 
 public class LoginUserDTO {
     private String password;

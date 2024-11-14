@@ -1,4 +1,4 @@
-package com.projectcodingthub.project_coding_hub.service;
+package com.projectcodingthub.project_coding_hub.Jwt.service;
 
 import java.security.Key;
 import java.util.Date;

@@ -19,23 +19,8 @@ content-type: application/json
 
 ###
 
-GET http://localhost:8080/auth/user HTTP/1.1
-content-type: application/json
-
-{
-}
-
-###
-
-POST http://localhost:8080/auth/free HTTP/1.1
-content-type: application/json
-
-{
-}
-
-###
-
-GET http://localhost:8080/world HTTP/1.1
+GET http://localhost:8080/protected HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNzMxNjIzNjQ3LCJleHAiOjE3MzE2MjcyNDd9.YAklEcNv_pfZUY7jpBLtNs_M20GnEYAhYp2PQjOj3sI
 content-type: application/json
 
 {

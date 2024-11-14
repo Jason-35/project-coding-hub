@@ -8,6 +8,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.projectcodingthub.project_coding_hub.Jwt.filter.JwtAuthFilter;
+
 import org.springframework.security.authentication.AuthenticationProvider;
 
 @Configuration
@@ -29,8 +32,6 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable()).
             authorizeHttpRequests(auth -> {
-                auth.requestMatchers("/hello").permitAll();
-                auth.requestMatchers("/world").permitAll();
                 auth.requestMatchers("/auth/**").permitAll();
                 auth.anyRequest().authenticated();
             })
