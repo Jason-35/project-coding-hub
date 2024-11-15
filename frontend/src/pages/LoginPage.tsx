@@ -23,7 +23,9 @@ function LoginPage() {
 
     const formSubmit = (data: FormValue) => {
         console.log("Submit form", data)
-        axios.post("http://localhost:8080/hello", {})
+        axios.post("http://localhost:8080/auth/login", data).then((res) => {
+            console.log(res.data)
+        })
     }
 
     return (
@@ -33,7 +35,7 @@ function LoginPage() {
         </div>
         <div className="flex-1 flex justify-center items-center">
             <form 
-                className="flex flex-col bg-zinc-100 h-3/4 rounded-md p-12 gap-6 w-1/3 shadow-2xl"
+                className="flex flex-col bg-zinc-100 h-3/4 rounded-md p-12 gap-6 w-1/4 shadow-2xl"
                 onSubmit={handleSubmit(formSubmit)}
                 onError={() => {
                     alert("fail")
