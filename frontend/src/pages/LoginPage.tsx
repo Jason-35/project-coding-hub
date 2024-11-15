@@ -14,8 +14,10 @@ function LoginPage() {
         password: string
     }
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormValue>()
-    const [showText, setShowText] = useState<boolean>(false)
+    const { register, handleSubmit, formState: { errors } } = useForm<FormValue>();
+
+    const [ loginError, setLoginError ] = useState<number>(200); 
+    const [showText, setShowText] = useState<boolean>(false);
 
     const clickShowtext = () => {
         setShowText(!showText)
@@ -25,6 +27,9 @@ function LoginPage() {
         console.log("Submit form", data)
         axios.post("http://localhost:8080/auth/login", data).then((res) => {
             console.log(res.data)
+        }).catch((error) => {
+            setLoginError(error.response.status)
+            console.log(error.response.status)
         })
     }
 
@@ -35,17 +40,16 @@ function LoginPage() {
         </div>
         <div className="flex-1 flex justify-center items-center">
             <form 
-                className="flex flex-col bg-zinc-100 h-3/4 rounded-md p-12 gap-6 w-1/4 shadow-2xl"
-                onSubmit={handleSubmit(formSubmit)}
-                onError={() => {
-                    alert("fail")
-                }}>
+                className="flex flex-col bg-zinc-100 h-3/4 rounded-md p-12 gap-5 w-1/4 shadow-2xl"
+                onSubmit={handleSubmit(formSubmit)}>
                 <div className="bg-orange-400 w-2/5 rounded-full aspect-square flex self-center">
                     <img src={Coding} alt="" />
                 </div>
-                <div className="self-center">
+                <div className="self-center gap-4">
                     <span>Sign in to your account</span>
+                    { loginError !== 200 && <div className="text-red-500 text-center p-0 m-0">Fail to login</div> }
                 </div>
+
                 
                 <div className="flex flex-col self-center w-4/5">
                     <div className={`flex ${errors.username ? "focus-within:border-red-500" : "focus-within:border-orange-400"} border-4 rounded-md border-transparent`}>
@@ -58,7 +62,7 @@ function LoginPage() {
                             type="text" 
                             placeholder="Username" />
                     </div>
-                   {errors.username && <div>Username required</div>}
+                   {errors.username && <div className="text-red-500">Username required</div>}
                 </div>
                 <div className="self-center flex flex-col w-4/5">
                     <div className={`flex ${errors.password ? "focus-within:border-red-500" : "focus-within:border-orange-400"} border-4 rounded-md border-transparent`}>
@@ -76,7 +80,7 @@ function LoginPage() {
                             {showText ? <EyeOff color="black" size={20}/> : <Eye color="black" size={20}/>}
                         </div>
                     </div>
-                    {errors.password && <div>Password required</div>}
+                    {errors.password && <div className="text-red-500">Password required</div>}
                 </div>
                 <div className="self-center text-sm flex w-4/5 justify-between">
                     <div className="flex w-2/4 gap-2">
