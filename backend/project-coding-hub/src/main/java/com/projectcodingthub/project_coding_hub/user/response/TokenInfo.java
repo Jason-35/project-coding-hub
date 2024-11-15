@@ -1,13 +1,13 @@
-package com.projectcodingthub.project_coding_hub.user.dto;
+package com.projectcodingthub.project_coding_hub.user.response;
 
-public class TokenResponse {
+public class TokenInfo {
     private String token;
 
     private long expiresIn;
 
-    public TokenResponse() {};
+    public TokenInfo() {};
 
-    public TokenResponse(String token, long expiresIn){
+    public TokenInfo(String token, long expiresIn){
         this.token = token;
         this.expiresIn = expiresIn;
     }

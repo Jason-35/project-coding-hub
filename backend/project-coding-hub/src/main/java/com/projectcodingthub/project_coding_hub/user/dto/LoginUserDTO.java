@@ -2,7 +2,6 @@ package com.projectcodingthub.project_coding_hub.user.dto;
 
 public class LoginUserDTO {
     private String password;
-    
     private String username;
 
     public LoginUserDTO(String username, String password){
