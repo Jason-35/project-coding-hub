@@ -65,8 +65,8 @@ function LandingPage() {
             <div>
             </div>
             <div className="w-2/4">
-                {genre.map((genre) => (
-                    <Chip label={genre} border_size="border-none"/>
+                {genre.map((genre, index) => (
+                    <Chip key={index} label={genre} border_size="border-none"/>
                 ))}
             </div>
         </div>
