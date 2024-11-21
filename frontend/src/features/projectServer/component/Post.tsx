@@ -37,7 +37,7 @@ function Post({title, genre, description, icon, open} : PostProps) {
         </div>
         <div className="mb-2 max-h-32 min-h-30 overflow-scroll">
             {genre?.map((genre, index) => (
-                <Chip key={index} label={genre} padding="p-1"/>
+                <Chip key={index} label={genre} padding="p-1" shape="rounded-md"/>
             ))}
         </div>
         <div className="overflow-scroll max-h-36 scrollbar-hidden">
