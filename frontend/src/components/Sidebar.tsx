@@ -1,4 +1,3 @@
-import { Outlet } from "react-router-dom"
 import { HomeIcon, MailIcon, CompassIcon } from "lucide-react"
 import UserProfile from "../features/user/component/UserProfile"
 import ServerIcon from "../features/projectServer/component/ServerIcon"
@@ -14,16 +13,16 @@ function Sidebar() {
             </div>
             <div className="border-[1px] border-black" />
             <div className="flex flex-col items-center gap-2 h-[80%] scrollbar-hidden w-full overflow-y-scroll ">
-                <Tooltip>
+                <Tooltip content={"Flappy Bird"}>
                     <ServerIcon serverName={"Flappy Bird"} serverImg={flappy} />
                 </Tooltip>
-                <Tooltip>
+                <Tooltip content={"Calculator"}>
                     <ServerIcon serverName={"Calculator"} serverImg={kitty}/>
                 </Tooltip>
-                <Tooltip>
+                <Tooltip content={"Music Creator"}>
                     <ServerIcon serverName={"Music Creator"} />
                 </Tooltip>
-                <Tooltip >
+                <Tooltip content={"TODO"}>
                     <ServerIcon serverName={"TODO"}/>
                 </Tooltip>
               
