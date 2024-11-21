@@ -11,7 +11,7 @@ function ProjectBoard() {
                 Postings
             </div>
         </div>
-        <div className="p-4 flex flex-wrap gap-16 border-4 justify-center">
+        <div className="p-10 flex flex-wrap gap-16">
             <Post title="Spotify" description={desc} icon={kitty} open={true} genre={genre}/>
         </div>
     </div>
