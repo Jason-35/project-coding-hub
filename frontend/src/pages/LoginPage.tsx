@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form"
 
 import { Lock, User, Eye, EyeOff } from "lucide-react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import Logo from "../components/Logo"
 import Coding from "../assets/coding.svg"
@@ -13,6 +13,8 @@ function LoginPage() {
         username: string,
         password: string
     }
+
+    const navigate = useNavigate()
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormValue>();
 
@@ -26,7 +28,8 @@ function LoginPage() {
     const formSubmit = (data: FormValue) => {
         console.log("Submit form", data)
         axios.post("http://localhost:8080/auth/login", data).then((res) => {
-            console.log(res.data)
+            console.log("data here!" + res.data)
+            navigate("/dashboard")
         }).catch((error) => {
             setLoginError(error.response.status)
             console.log(error.response.status)
