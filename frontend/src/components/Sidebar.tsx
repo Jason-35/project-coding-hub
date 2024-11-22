@@ -4,20 +4,19 @@ import ServerIcon from "../features/projectServer/component/ServerIcon"
 import kitty from "../assets/kitty.png"
 import flappy from "../assets/flappy.png"
 import Tooltip from "./Tooltip"
+import UserMenu from "../features/user/component/UserMenu"
+import { useState } from "react"
 
 function Sidebar() {
+    const [showMenu, setShowMenu] = useState<boolean>(false)
   return (
         <div className="fixed w-screen bg-transparent h-screen overflow-y-scroll scrollbar-hidden pointer-events-none">
             <div className="sticky flex flex-col gap-3 w-fit p-4 bg-white pointer-events-auto">
-                <div className="">
-                    <UserProfile />
-                    {/* <div className="fixed border-4 translate-x-24 w-96 h-fit bg-orange-400">
-                        <div>ID: 0198362465</div>
-                        <div>Profile</div>
-                        <div>Mail</div>
-                        <div>Friends</div>
-                        <div>Logout</div>
-                    </div> */}
+                <div>
+                    <UserMenu showMenu={showMenu} />
+                    <div className="hover:cursor-pointer" onClick={() => setShowMenu(!showMenu)}>
+                        <UserProfile />
+                    </div>
                 </div>
                 <div className="border-[1px] border-black" />
 
