@@ -4,7 +4,6 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import ProjectBoard from "./pages/ProjectBoard";
-import Sidebar from "./components/Sidebar";
 import PrivateRoute from "./features/auth/component/PrivateRoute";
 import './index.css'
 
