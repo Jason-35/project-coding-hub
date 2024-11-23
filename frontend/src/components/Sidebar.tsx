@@ -1,14 +1,16 @@
-import { HomeIcon, MailIcon, CompassIcon } from "lucide-react"
+import { CompassIcon } from "lucide-react"
+import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 import UserProfile from "../features/user/component/UserProfile"
 import ServerIcon from "../features/projectServer/component/ServerIcon"
 import kitty from "../assets/kitty.png"
 import flappy from "../assets/flappy.png"
 import Tooltip from "./Tooltip"
 import UserMenu from "../features/user/component/UserMenu"
-import { useState } from "react"
 
 function Sidebar() {
     const [showMenu, setShowMenu] = useState<boolean>(false)
+    const navigate = useNavigate()
     return (
         <div className="fixed w-screen bg-transparent h-screen overflow-y-scroll pointer-events-none">
             <div className="sticky border-r-2 min-h-screen border-blue-400 flex flex-col gap-3 w-fit p-4 bg-white pointer-events-auto">
@@ -31,7 +33,7 @@ function Sidebar() {
                 </Tooltip>
             
 
-                <div className="aspect-square rounded-lg flex justify-center items-center bg-orange-300">
+                <div onClick={() => navigate("projectBoard")} className="aspect-square rounded-lg flex justify-center items-center bg-orange-300 hover:cursor-pointer">
                     <CompassIcon className="w-full h-full p-2" strokeWidth={1} />
                 </div>
             </div>        

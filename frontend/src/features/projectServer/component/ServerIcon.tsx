@@ -1,3 +1,6 @@
+
+import { useNavigate } from "react-router-dom"
+
 type ServerIconProps = {
     serverName: string,
     serverImg?: string,
@@ -5,8 +8,10 @@ type ServerIconProps = {
 }
 
 function ServerIcon({ serverName, serverImg, serverUrl }: ServerIconProps) {
+    const navigate = useNavigate()
+
     const handleServerNav = () => {
-        console.log("nav")
+        navigate(serverUrl)
     }
     return (
         <>
