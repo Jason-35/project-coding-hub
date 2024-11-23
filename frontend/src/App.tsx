@@ -6,6 +6,7 @@ import DashboardPage from "./pages/DashboardPage";
 import ProjectBoard from "./pages/ProjectBoard";
 import PrivateRoute from "./features/auth/component/PrivateRoute";
 import './index.css'
+import ServerPage from "./features/projectServer/component/ServerPage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="u" element={<PrivateRoute/>}>
             <Route path="dashboard" element={<DashboardPage/>}></Route>
             <Route path="projectBoard" element={<ProjectBoard/>}></Route>
+            <Route path=":serverId" element={<ServerPage/>}></Route>
         </Route>
       </Routes>
     </BrowserRouter>
