@@ -4,15 +4,16 @@ type PostProps = {
     genre?: string[],
     description: string,
     icon?: string,
-    open: boolean
+    open: boolean,
+    members: number,
 }
 
-function Post({title, genre, description, icon, open} : PostProps) {
+function Post({title, genre, description, icon, open, members} : PostProps) {
   return (
     <div className="w-96 rounded-lg border-2 p-2 h-max-92 scrollbar-hidden">
         <div className="flex border-b-4 border-orange-400 pb-1 bg-white rounded-t-full mb-2">
             {icon ? <img width={64} height={64} src={icon} className="rounded-lg aspect-square" /> : 
-            <div className="border-4 w-1/6 aspect-square rounded-lg flex justify-center items-center text-[32px]">
+            <div className="bg-blue-400 w-1/6 aspect-square rounded-lg flex justify-center items-center text-[32px]">
                 {title.charAt(0)}
             </div>}
             <div className="flex flex-1 px-2 justify-between">
@@ -29,7 +30,7 @@ function Post({title, genre, description, icon, open} : PostProps) {
                             </span>}
                         </div>
                         <div className="">
-                            <span className="border-2 border-r-0 border-black px-1">1</span>
+                            <span className="border-2 border-r-0 border-black px-1">{members}</span>
                             <span className="border-2 border-black px-2">member</span>
                         </div>
                     </div>

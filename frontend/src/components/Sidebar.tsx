@@ -9,9 +9,9 @@ import { useState } from "react"
 
 function Sidebar() {
     const [showMenu, setShowMenu] = useState<boolean>(false)
-  return (
-        <div className="fixed w-screen bg-transparent h-screen overflow-y-scroll scrollbar-hidden pointer-events-none">
-            <div className="sticky flex flex-col gap-3 w-fit p-4 bg-white pointer-events-auto">
+    return (
+        <div className=" fixed w-screen bg-transparent h-screen overflow-y-scroll scrollbar-hidden pointer-events-none">
+            <div className="sticky border-r-2 border-orange-400 flex flex-col gap-3 w-fit p-4 bg-white pointer-events-auto">
                 <div>
                     <UserMenu showMenu={showMenu} />
                     <div className="hover:cursor-pointer" onClick={() => setShowMenu(!showMenu)}>
