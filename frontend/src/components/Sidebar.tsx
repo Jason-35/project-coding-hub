@@ -12,7 +12,7 @@ function Sidebar() {
     const [showMenu, setShowMenu] = useState<boolean>(false)
     const navigate = useNavigate()
     return (
-        <div className="fixed w-screen bg-transparent h-screen overflow-y-scroll pointer-events-none">
+        <div className="fixed z-10 w-screen bg-transparent h-screen overflow-y-scroll pointer-events-none">
             <div className="sticky border-r-2 min-h-screen border-blue-400 flex flex-col gap-3 w-fit p-4 bg-white pointer-events-auto">
                 <div>
                     <UserMenu showMenu={showMenu} />
@@ -31,11 +31,14 @@ function Sidebar() {
                 <Tooltip content={"Super Kitty"}>
                         <ServerIcon serverName={"Super Kitty"} serverImg={kitty} serverUrl="ghi"/>
                 </Tooltip>
+
+                <Tooltip content={"Explore"}>
+                    <div onClick={() => navigate("projectBoard")} className="aspect-square rounded-lg flex justify-center items-center bg-orange-300 hover:cursor-pointer">
+                        <CompassIcon className="w-full h-full p-2" strokeWidth={1} />
+                    </div>
+                </Tooltip>
             
 
-                <div onClick={() => navigate("projectBoard")} className="aspect-square rounded-lg flex justify-center items-center bg-orange-300 hover:cursor-pointer">
-                    <CompassIcon className="w-full h-full p-2" strokeWidth={1} />
-                </div>
             </div>        
         </div>
   )

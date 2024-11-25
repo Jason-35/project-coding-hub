@@ -7,6 +7,7 @@ import ProjectBoard from "./pages/ProjectBoard";
 import PrivateRoute from "./features/auth/component/PrivateRoute";
 import './index.css'
 import ServerPage from "./features/projectServer/component/ServerPage";
+import Chat from "./features/channels/component/Chat";
 
 function App() {
   return (
@@ -18,7 +19,9 @@ function App() {
         <Route path="u" element={<PrivateRoute/>}>
             <Route path="dashboard" element={<DashboardPage/>}></Route>
             <Route path="projectBoard" element={<ProjectBoard/>}></Route>
-            <Route path=":serverId" element={<ServerPage/>}></Route>
+            <Route path=":serverId" element={<ServerPage/>}>
+                <Route index path=":channelId" element={<div><Chat /></div>} />
+            </Route>
         </Route>
       </Routes>
     </BrowserRouter>
