@@ -7,11 +7,11 @@ function TextChannel() {
     const [showMenu, setShowMenu] = useState(false)
 
     return (
-        <div className="border-4 w-1/6 relative flex flex-col">
+        <div className="w-1/6 relative flex flex-col">
                 <div className="relative">
                     <div className="p-4 border-b-4 mb-1 flex justify-between hover:cursor-pointer"
                         onClick={() => setShowMenu(!showMenu)}>
-                        <span>asd</span> 
+                        <span>asd</span>
                         <ChevronDown />
                     </div>
                     {showMenu ? 
@@ -21,7 +21,8 @@ function TextChannel() {
                         <div className="border-2 p-1 rounded-md hover:cursor-pointer hover:bg-blue-400 hover:text-white">Server Settings</div>
                         <div className="border-2 p-1 rounded-md hover:cursor-pointer hover:bg-blue-400 hover:text-white">Delete Channel</div>
                     </div> 
-                    : <></>}
+                    : <></>
+                    }
                 </div>
             <div className="overflow-scroll flex flex-col gap-2 px-2">
                   {channels.map((ch, index) => (

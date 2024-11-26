@@ -5,8 +5,8 @@ function ServerPage() {
   return (
     <div className='flex-1 flex'>
         <TextChannel />
-        <div className="border-4 flex-1"><Outlet /></div>
-        <div className="border-4 w-1/6">Members</div>
+        <div className="flex-1 border-l-2 border-r-2"><Outlet /></div>
+        <div className="w-1/6">Members</div>
     </div>
   )
 }
