@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import { Lock, User, Mail, Eye, EyeOff } from "lucide-react"
 import Coding from "../assets/coding.svg"
@@ -15,6 +15,7 @@ function RegisterPage() {
     }
     const { register, handleSubmit, formState: { errors } } = useForm<FormValue>()
     const [showText, setShowText] = useState<boolean>(true)
+    const navigate = useNavigate()
 
     const clickShowtext = () => {
         setShowText(!showText)
@@ -23,7 +24,9 @@ function RegisterPage() {
     const formSubmit = (data: FormValue) => {
         console.log("Submit form", data)
         axios.post("http://localhost:8080/auth/signup", data).then((res) => {
-            console.log(res.data)
+            localStorage.setItem("userInfo", JSON.stringify(res.data.userInfo))
+            localStorage.setItem("tokenInfo", JSON.stringify(res.data.tokenInfo))
+            navigate("/dashboard")
         })
     }
 

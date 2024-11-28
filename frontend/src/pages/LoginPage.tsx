@@ -28,7 +28,8 @@ function LoginPage() {
     const formSubmit = (data: FormValue) => {
         console.log("Submit form", data)
         axios.post("http://localhost:8080/auth/login", data).then((res) => {
-            console.log("data here!" + res.data)
+            localStorage.setItem("userInfo", JSON.stringify(res.data.userInfo))
+            localStorage.setItem("tokenInfo", JSON.stringify(res.data.tokenInfo))
             navigate("/dashboard")
         }).catch((error) => {
             setLoginError(error.response.status)
