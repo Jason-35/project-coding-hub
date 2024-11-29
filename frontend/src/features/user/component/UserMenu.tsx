@@ -1,6 +1,6 @@
 import { UserIcon, MailIcon, UsersIcon, LogOutIcon, SquarePlusIcon } from "lucide-react"
 
-function UserMenu({showMenu} : {showMenu: boolean}) {
+function UserMenu({showMenu, setShowMenu, setShowCreateServer} : {showMenu: boolean, setShowMenu: React.Dispatch<React.SetStateAction<boolean>>, setShowCreateServer: React.Dispatch<React.SetStateAction<boolean>>}) {
   return (
     <div className={`fixed ${showMenu ? "scale-100" : "scale-0"} rounded-lg transition duration-150 ease-in origin-top-left flex flex-col translate-x-24 w-52 h-fit bg-orange-400 gap-4 p-2`}>
         <div className="pl-4 truncate">
@@ -22,7 +22,11 @@ function UserMenu({showMenu} : {showMenu: boolean}) {
             <UsersIcon />
             <div>Friends</div>
         </div>
-        <div className="flex gap-4 hover:cursor-pointer hover:bg-black hover:text-white hover:rounded-md p-2">
+        <div className="flex gap-4 hover:cursor-pointer hover:bg-black hover:text-white hover:rounded-md p-2"
+            onClick={() => {
+                setShowMenu(false)
+                setShowCreateServer(true)
+            }}>
             <SquarePlusIcon />
             <div>Create Project</div>
         </div>

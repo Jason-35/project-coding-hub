@@ -7,7 +7,7 @@ function TextChannel() {
     const [showMenu, setShowMenu] = useState(false)
 
     return (
-        <div className="w-1/6 relative flex flex-col">
+        <div className="z-10 w-1/6 relative flex flex-col">
                 <div className="relative">
                     <div className="p-4 border-b-4 mb-1 flex justify-between hover:cursor-pointer"
                         onClick={() => setShowMenu(!showMenu)}>
