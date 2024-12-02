@@ -38,18 +38,14 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
 
   return (
     <div className='fixed z-30 w-screen h-screen top-0 left-0 flex justify-center items-center bg-black/40'>
-        <div className="z-40 w-2/6 p-4 h-fit bg-yellow-400 rounded-md    opacity-100 flex flex-col justify-center items-center gap-4">
-            <div className="flex justify-between w-4/5">
-                <div className="text-[24px]">Customize your server</div>
-                <div className="hover:cursor-pointer" onClick={() => setShowCreateServer(false)}>
-                    <XIcon/>
-                </div>
+        <div className="relative z-40 w-2/6 p-4 h-fit bg-yellow-400 rounded-md opacity-100 flex flex-col justify-center items-center gap-4">
+            <div className="absolute top-0 right-0 -translate-x-2 translate-y-2  hover:cursor-pointer" onClick={() => setShowCreateServer(false)}>
+                <XIcon/>
             </div>
-            
-            
+            <div className="text-[24px]">Create your server</div>
             <div className="relative">
                 <div className="flex flex-col bg-white justify-center items-center aspect-square rounded-full border-2 w-32 hover:cursor-pointer">
-                    {serverImg ? <img src={URL.createObjectURL(serverImg)} className="w-full h-full rounded-full aspect-square" /> : 
+                    {serverImg ? <img src={URL.createObjectURL(serverImg)} className="w-full h-full rounded-full aspect-square object-cover" /> : 
                     <div className="border-4 w-full h-full aspect-square rounded-full flex flex-col justify-center items-center">
                         <CameraIcon />
                         <span>upload</span>
@@ -80,7 +76,7 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
             </div>
             <div className="w-4/5">
                 <textarea 
-                    className="text-black w-full resize-none text-[18px]" 
+                    className="text-black w-full resize-none text-[18px] p-2" 
                     placeholder="description" 
                     cols={30} 
                     rows={5} />
@@ -100,7 +96,7 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
                         placeholder="Add a tag" 
                         onKeyDown={handleInput}
                         maxLength={20}
-                        className="w-full p-1" />
+                        className="w-full p-2 rounded-sm" />
                 </div>
                 <div className="italic text-[12px]">
                     20 max tags
