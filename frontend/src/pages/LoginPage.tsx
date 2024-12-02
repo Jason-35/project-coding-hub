@@ -51,7 +51,7 @@ function LoginPage() {
                 </div>
                 <div className="self-center gap-4">
                     <span>Sign in to your account</span>
-                    { loginError !== 200 && <div className="text-red-500 text-center p-0 m-0">Fail to login</div> }
+                    {loginError !== 200 && <div className="text-red-500 text-center p-0 m-0">Fail to login</div>}
                 </div>
 
                 
@@ -98,10 +98,10 @@ function LoginPage() {
                     </div>
                 </div>
                 <button className="border-2 self-center w-4/5 p-2 rounded-md border-black hover:bg-orange-400 hover:text-white hover:border-orange-500">
-                Sign In
+                    Sign In
                 </button>
                 <div className="self-center">
-                Not a member? <Link to={"/signup"} className="hover:underline">Create new account</Link>
+                    Not a member? <Link to={"/signup"} className="hover:underline">Create new account</Link>
                 </div>
             </form>
         </div>

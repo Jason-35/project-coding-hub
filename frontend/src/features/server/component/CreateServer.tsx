@@ -2,8 +2,18 @@ import { XIcon, CameraIcon } from "lucide-react"
 import { useRef, useState } from "react"
 import Chip from "../../../components/Chip"
 import { removeValue } from "../util/Util"
+import { useForm } from "react-hook-form"
 
 function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatch<React.SetStateAction<boolean>>}) {
+    type ServerFormValue = {
+        serverStatus: boolean,
+        serverName: string,
+        serverDescription: string,
+        serverTags: string[],
+        serverImg: string,
+    }
+
+    const { register, handleSubmit, formState: { errors } } = useForm<ServerFormValue>();
     const [tags, setTags] = useState<string[]>([])
     const [statPrivate, setStatPrivate] = useState<boolean>(false)
     const [serverImg, setServerImg] = useState<File | undefined>()
@@ -22,8 +32,7 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
         }  
     }
 
-    const handleCheckChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value, "change")
+    const handleCheckChange = () => {
         setStatPrivate(!statPrivate)
     }
 
@@ -32,13 +41,29 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
     }
 
     const uploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log("uploading image!", typeof(e.target.files?.[0]))
+        console.log("uploading image!", (e.target.files?.[0]))
         setServerImg(e.target.files?.[0])
+    }
+
+    const formSubmit = async(data: ServerFormValue) => {
+        if(serverImg) {
+            const reader = new FileReader();
+            reader.readAsDataURL(serverImg);
+            reader.onload = () => {
+                const base64Data = reader.result as string;
+                console.log(base64Data)
+                data.serverImg = base64Data
+            }
+        }
+        data.serverTags = tags
+        console.log(data)
     }
 
   return (
     <div className='fixed z-30 w-screen h-screen top-0 left-0 flex justify-center items-center bg-black/40'>
-        <div className="relative z-40 w-2/6 p-4 h-fit bg-yellow-400 rounded-md opacity-100 flex flex-col justify-center items-center gap-4">
+        <form 
+            className="relative z-40 w-2/6 p-4 h-fit bg-yellow-400 rounded-md opacity-100 flex flex-col justify-center items-center gap-4"
+            onSubmit={handleSubmit(formSubmit)}>
             <div className="absolute top-0 right-0 -translate-x-2 translate-y-2  hover:cursor-pointer" onClick={() => setShowCreateServer(false)}>
                 <XIcon/>
             </div>
@@ -58,25 +83,28 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
             </div>
             <div className="w-4/5 flex items-center gap-2">
                 <label>
-                    <input 
+                    <input
+                        {...register("serverStatus")} 
                         type="checkbox" 
                         checked={statPrivate} 
                         onChange={handleCheckChange} 
                         className="sr-only peer"/>
-                    <div className="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-green-400 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-red-400"></div>
+                    <div className="relative w-9 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-green-400 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-red-400"></div>
                 </label>
                 {statPrivate ?  <span>Private</span> : <span>Public</span>}
             </div>
             <div className="w-4/5">
                 <input 
+                    {...register("serverName", { required: true})}
                     type="text" 
                     placeholder="server's name" 
                     className="w-full p-2 rounded-sm text-[18px] mb-2" />
-                <div className="text-red-500">Required field</div>
+                {errors.serverName && <div className="text-red-500 italic">*Required field</div>}
             </div>
             <div className="w-4/5">
                 <textarea 
-                    className="text-black w-full resize-none text-[18px] p-2" 
+                    {...register("serverDescription")}
+                    className="text-black w-full resize-none text-[18px] p-2 rounded-sm" 
                     placeholder="description" 
                     cols={30} 
                     rows={5} />
@@ -85,8 +113,11 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
                 <div className="text-[20px]">Tags</div>
                 <div className="flex flex-wrap max-h-52 overflow-scroll scrollbar-hidden">
                     {tags && tags.map((tag, index) => (
-                        <div key={index} onClick={() => removeChip(tag)}>
-                            <Chip label={tag} padding="p-1"/>
+                        <div 
+                            key={index} 
+                            onClick={() => removeChip(tag)}
+                            className="hover:cursor-pointer">
+                            <Chip label={tag} padding="p-1" border_size="border-[1px]"/>
                         </div>
                     ))}
                 </div>
@@ -103,7 +134,7 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
                 </div>
             </div>
             <button className="bg-white w-4/5 p-1 rounded-md">Create</button>
-        </div>
+        </form>
     </div>
   )
 }
