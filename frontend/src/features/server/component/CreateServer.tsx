@@ -18,7 +18,7 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
     const [statPrivate, setStatPrivate] = useState<boolean>(false)
     const [serverImg, setServerImg] = useState<File | undefined>()
 
-    const inputRef = useRef<HTMLInputElement>(null)
+    const tagInputRef = useRef<HTMLInputElement>(null)
 
     const handleInput = (e: React.KeyboardEvent) => {
     let event = (e.target as HTMLInputElement)
@@ -26,8 +26,8 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
             if(tags.length <= 20 && !tags.includes(event.value)) {
                 setTags([...tags, event.value])
             }
-            if(inputRef.current) {
-                inputRef.current.value = ""
+            if(tagInputRef.current) {
+                tagInputRef.current.value = ""
             }
         }  
     }
@@ -45,7 +45,7 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
         setServerImg(e.target.files?.[0])
     }
 
-    const formSubmit = async(data: ServerFormValue) => {
+    const formSubmit = (data: ServerFormValue) => {
         if(serverImg) {
             const reader = new FileReader();
             reader.readAsDataURL(serverImg);
@@ -56,7 +56,6 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
             }
         }
         data.serverTags = tags
-        console.log(data)
     }
 
   return (
@@ -122,7 +121,7 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
                     ))}
                 </div>
                 <div>
-                    <input ref={inputRef} 
+                    <input ref={tagInputRef} 
                         type="text" 
                         placeholder="Add a tag" 
                         onKeyDown={handleInput}
