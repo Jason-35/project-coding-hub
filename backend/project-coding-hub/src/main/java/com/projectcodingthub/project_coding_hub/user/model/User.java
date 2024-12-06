@@ -37,7 +37,6 @@ public class User implements UserDetails {
     @Column(unique = true, length = 100, nullable = false)
     private String email;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "owner")
     private Set<Server> OwnedServer = new HashSet<>();
 

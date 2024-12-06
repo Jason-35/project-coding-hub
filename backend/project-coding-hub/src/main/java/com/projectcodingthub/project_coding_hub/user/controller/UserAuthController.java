@@ -1,36 +1,33 @@
 package com.projectcodingthub.project_coding_hub.user.controller;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projectcodingthub.project_coding_hub.Jwt.service.JwtService;
 import com.projectcodingthub.project_coding_hub.user.dto.LoginUserDTO;
 import com.projectcodingthub.project_coding_hub.user.dto.RegisterUserDTO;
 import com.projectcodingthub.project_coding_hub.user.model.User;
-import com.projectcodingthub.project_coding_hub.user.repository.UserRepository;
 import com.projectcodingthub.project_coding_hub.user.response.SignInResponse;
 import com.projectcodingthub.project_coding_hub.user.response.TokenInfo;
 import com.projectcodingthub.project_coding_hub.user.response.UserInfo;
 import com.projectcodingthub.project_coding_hub.user.service.UserService;
 
 @RestController
+@RequestMapping("/auth")
 public class UserAuthController {
 
     private final JwtService jwt;
     private final UserService authService;
-    // private final UserRepository userRepository;
 
     public UserAuthController(JwtService jwt, UserService authService){
         this.jwt = jwt;
         this.authService = authService;
-        // this.userRepository = userRepository;
     }
 
-    @PostMapping("/auth/signup")
+    @PostMapping("signup")
     public ResponseEntity<SignInResponse> register(@RequestBody RegisterUserDTO registerUserDto) {
         User registeredUser = authService.signup(registerUserDto);
         String jwtToken = jwt.generateToken(registeredUser);
@@ -41,7 +38,7 @@ public class UserAuthController {
         return ResponseEntity.ok(signInResponse);
     }
 
-    @PostMapping("/auth/login")
+    @PostMapping("login")
     public ResponseEntity<SignInResponse> authenticate(@RequestBody LoginUserDTO loginUserDto) {
         User authenticatedUser = authService.authenticate(loginUserDto);
         String jwtToken = jwt.generateToken(authenticatedUser);
@@ -50,11 +47,6 @@ public class UserAuthController {
         UserInfo userInfo = new UserInfo(loginUserDto.getUsername(), authenticatedUser.getId());
         SignInResponse signInResponse = new SignInResponse(userInfo, tokenInfo);
         return ResponseEntity.ok(signInResponse);
-    }
-
-    @GetMapping("/home")
-    public String dame() {
-        return "jnk lfdsa";
     }
     
 }
