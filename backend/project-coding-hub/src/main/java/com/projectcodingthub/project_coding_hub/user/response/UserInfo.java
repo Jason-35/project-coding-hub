@@ -2,9 +2,11 @@ package com.projectcodingthub.project_coding_hub.user.response;
 
 public class UserInfo {
     private String username;
+    private int id;
     
-    public UserInfo(String username) {
+    public UserInfo(String username, int id) {
         this.username = username;
+        this.id = id;
     }
 
 
@@ -14,6 +16,10 @@ public class UserInfo {
 
     public String getUsername(){
         return this.username;
+    }
+
+    public int getId() {
+        return this.id;
     }
 
     // TODO: Get project groups

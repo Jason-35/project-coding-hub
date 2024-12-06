@@ -3,6 +3,8 @@ import { useRef, useState } from "react"
 import Chip from "../../../components/Chip"
 import { removeValue } from "../util/Util"
 import { useForm } from "react-hook-form"
+import axios from "axios"
+import { getJwtToken, getUserInfo } from "../../auth/util/util"
 
 function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatch<React.SetStateAction<boolean>>}) {
     type ServerFormValue = {
@@ -46,16 +48,30 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
     }
 
     const formSubmit = (data: ServerFormValue) => {
-        if(serverImg) {
-            const reader = new FileReader();
-            reader.readAsDataURL(serverImg);
-            reader.onload = () => {
-                const base64Data = reader.result as string;
-                console.log(base64Data)
-                data.serverImg = base64Data
+        const token = getJwtToken()
+        const config = {
+            headers: {
+              Authorization: `Bearer ${token}`
             }
-        }
-        data.serverTags = tags
+        };
+
+        // if(serverImg) {
+        //     const reader = new FileReader();
+        //     reader.readAsDataURL(serverImg);
+        //     reader.onload = () => {
+        //         const base64Data = reader.result as string;
+        //         data.serverImg = base64Data
+        //     }
+        // }
+        // data.serverTags = tags
+        // let userInfo = getUserInfo()
+        // axios.post("http://localhost:8080/user/server/create", {}, config)
+        // axios.defaults.headers.common['Authorization'] = "Bearer " + token;
+        axios.get("http://localhost:8080/home", config).then((res) => {
+            console.log(res.data)
+        }).catch((errors) => {
+            console.log(errors)
+        })
     }
 
   return (

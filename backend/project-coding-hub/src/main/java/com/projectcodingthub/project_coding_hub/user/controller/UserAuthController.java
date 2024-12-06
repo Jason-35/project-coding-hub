@@ -11,21 +11,23 @@ import com.projectcodingthub.project_coding_hub.Jwt.service.JwtService;
 import com.projectcodingthub.project_coding_hub.user.dto.LoginUserDTO;
 import com.projectcodingthub.project_coding_hub.user.dto.RegisterUserDTO;
 import com.projectcodingthub.project_coding_hub.user.model.User;
+import com.projectcodingthub.project_coding_hub.user.repository.UserRepository;
 import com.projectcodingthub.project_coding_hub.user.response.SignInResponse;
 import com.projectcodingthub.project_coding_hub.user.response.TokenInfo;
 import com.projectcodingthub.project_coding_hub.user.response.UserInfo;
 import com.projectcodingthub.project_coding_hub.user.service.UserService;
 
 @RestController
-@CrossOrigin
-public class UserController {
+public class UserAuthController {
 
     private final JwtService jwt;
     private final UserService authService;
+    // private final UserRepository userRepository;
 
-    public UserController(JwtService jwt, UserService authService){
+    public UserAuthController(JwtService jwt, UserService authService){
         this.jwt = jwt;
         this.authService = authService;
+        // this.userRepository = userRepository;
     }
 
     @PostMapping("/auth/signup")
@@ -34,7 +36,7 @@ public class UserController {
         String jwtToken = jwt.generateToken(registeredUser);
 
         TokenInfo tokenInfo = new TokenInfo(jwtToken, jwt.getExpirationTime());
-        UserInfo userInfo = new UserInfo(registerUserDto.getUsername());
+        UserInfo userInfo = new UserInfo(registerUserDto.getUsername(), registeredUser.getId());
         SignInResponse signInResponse = new SignInResponse(userInfo, tokenInfo);
         return ResponseEntity.ok(signInResponse);
     }
@@ -45,8 +47,14 @@ public class UserController {
         String jwtToken = jwt.generateToken(authenticatedUser);
         
         TokenInfo tokenInfo = new TokenInfo(jwtToken, jwt.getExpirationTime());
-        UserInfo userInfo = new UserInfo(loginUserDto.getUsername());
+        UserInfo userInfo = new UserInfo(loginUserDto.getUsername(), authenticatedUser.getId());
         SignInResponse signInResponse = new SignInResponse(userInfo, tokenInfo);
         return ResponseEntity.ok(signInResponse);
     }
+
+    @GetMapping("/home")
+    public String dame() {
+        return "jnk lfdsa";
+    }
+    
 }

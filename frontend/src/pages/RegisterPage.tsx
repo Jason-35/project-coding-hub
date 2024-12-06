@@ -26,7 +26,7 @@ function RegisterPage() {
         axios.post("http://localhost:8080/auth/signup", data).then((res) => {
             localStorage.setItem("userInfo", JSON.stringify(res.data.userInfo))
             localStorage.setItem("tokenInfo", JSON.stringify(res.data.tokenInfo))
-            navigate("/dashboard")
+            navigate("/u/dashboard")
         })
     }
 

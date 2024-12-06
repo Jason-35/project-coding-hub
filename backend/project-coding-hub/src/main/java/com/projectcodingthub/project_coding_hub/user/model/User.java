@@ -1,16 +1,22 @@
 package com.projectcodingthub.project_coding_hub.user.model;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.projectcodingthub.project_coding_hub.server.model.Server;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -30,7 +36,11 @@ public class User implements UserDetails {
 
     @Column(unique = true, length = 100, nullable = false)
     private String email;
-    
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "owner")
+    private Set<Server> OwnedServer = new HashSet<>();
+
     @SuppressWarnings("unused")
     private User(){}
 
@@ -42,6 +52,10 @@ public class User implements UserDetails {
         
     public Integer getId() {
         return this.id;
+    }
+
+    public Set<Server> getOwnedServer() {
+        return this.OwnedServer;
     }
         
     @Override
