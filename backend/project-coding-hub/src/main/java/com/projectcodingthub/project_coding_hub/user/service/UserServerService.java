@@ -1,6 +1,7 @@
 package com.projectcodingthub.project_coding_hub.user.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.projectcodingthub.project_coding_hub.server.model.Server;
 import com.projectcodingthub.project_coding_hub.server.repository.ServerRepository;
@@ -34,9 +35,11 @@ public class UserServerService {
             serverInfo.getServerImg(), 
             serverInfo.getServerStatus(), 
             serverInfo.getServerTags()
-            );
+        );
+
+        // System.out.println(serverInfo.getServerImg());
         
         return serverRepository.save(server);
     }
-    
+
 }
