@@ -1,5 +1,5 @@
 import { XIcon, CameraIcon } from "lucide-react"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Chip from "../../../components/Chip"
 import { removeValue } from "../util/Util"
 import { useForm } from "react-hook-form"
@@ -19,6 +19,18 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
     const [tags, setTags] = useState<string[]>([])
     const [statPrivate, setStatPrivate] = useState<boolean>(false)
     const [serverImg, setServerImg] = useState<File | undefined>()
+    const [base64img, setBase64Img] = useState<string>("")
+    
+    useEffect(() => {
+        if(serverImg) {
+            const reader = new FileReader();
+            reader.readAsDataURL(serverImg);
+            reader.onload = () => {
+                const base64Data = reader.result as string;
+                setBase64Img(base64Data);
+            }
+        }
+    }, [serverImg])
 
     const tagInputRef = useRef<HTMLInputElement>(null)
 
@@ -43,42 +55,49 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
     }
 
     const uploadImage = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log("uploading image!", (e.target.files?.[0]))
         setServerImg(e.target.files?.[0])
     }
 
-    const formSubmit = (data: ServerFormValue) => {
+    const formSubmit = async(data: ServerFormValue) => {
         const token = getJwtToken()
         const config = {
             headers: {
               Authorization: `Bearer ${token}`
             }
         };
+        
+        data.serverTags = tags
+        let userInfo = getUserInfo()
+        
+        
+        if (base64img !== "") {
+            data.serverImg = base64img;
+        } else {
+            data.serverImg = data.serverName.charAt(0)
+        }
 
-        // if(serverImg) {
-        //     const reader = new FileReader();
-        //     reader.readAsDataURL(serverImg);
-        //     reader.onload = () => {
-        //         const base64Data = reader.result as string;
-        //         data.serverImg = base64Data
-        //     }
-        // }
-        // data.serverTags = tags
-        // let userInfo = getUserInfo()
-        // axios.post("http://localhost:8080/user/server/create", {}, config)
-        // axios.defaults.headers.common['Authorization'] = "Bearer " + token;
-        axios.get("http://localhost:8080/home", config).then((res) => {
+        axios.post("http://localhost:8080/user/server/create", 
+        {
+            "userInfo" : userInfo,
+            "serverData" : data
+        },
+        config).then((res) => {
             console.log(res.data)
-        }).catch((errors) => {
-            console.log(errors)
-        })
+        })   
     }
+
+    const preventEnterSubmit = (event: React.KeyboardEvent<HTMLFormElement>) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+        }
+      };
 
   return (
     <div className='fixed z-30 w-screen h-screen top-0 left-0 flex justify-center items-center bg-black/40'>
         <form 
             className="relative z-40 w-2/6 p-4 h-fit bg-yellow-400 rounded-md opacity-100 flex flex-col justify-center items-center gap-4"
-            onSubmit={handleSubmit(formSubmit)}>
+            onSubmit={handleSubmit(formSubmit)}
+            onKeyDown={preventEnterSubmit}>
             <div className="absolute top-0 right-0 -translate-x-2 translate-y-2  hover:cursor-pointer" onClick={() => setShowCreateServer(false)}>
                 <XIcon/>
             </div>
