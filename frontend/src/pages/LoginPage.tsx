@@ -30,7 +30,7 @@ function LoginPage() {
         axios.post("http://localhost:8080/auth/login", data).then((res) => {
             localStorage.setItem("userInfo", JSON.stringify(res.data.userInfo))
             localStorage.setItem("tokenInfo", JSON.stringify(res.data.tokenInfo))
-            navigate("/dashboard")
+            navigate("/u/dashboard")
         }).catch((error) => {
             setLoginError(error.response.status)
             console.log(error.response.status)

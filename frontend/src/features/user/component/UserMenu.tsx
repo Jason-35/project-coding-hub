@@ -1,7 +1,16 @@
 import { UserIcon, MailIcon, UsersIcon, LogOutIcon, SquarePlusIcon } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 function UserMenu({showMenu, setShowMenu, setShowCreateServer} : {showMenu: boolean, setShowMenu: React.Dispatch<React.SetStateAction<boolean>>, setShowCreateServer: React.Dispatch<React.SetStateAction<boolean>>}) {
-  return (
+
+    const navigate = useNavigate()
+
+    const handleLogout = () => {
+        localStorage.clear()
+        navigate("/login")
+    }
+
+    return (
     <div className={`fixed ${showMenu ? "scale-100" : "scale-0"} rounded-lg transition duration-150 ease-in origin-top-left flex flex-col translate-x-24 w-52 h-fit bg-orange-400 gap-4 p-2`}>
         <div className="pl-4 truncate">
             Mango
@@ -30,7 +39,8 @@ function UserMenu({showMenu, setShowMenu, setShowCreateServer} : {showMenu: bool
             <SquarePlusIcon />
             <div>Create Project</div>
         </div>
-        <div className="flex gap-4 hover:cursor-pointer hover:bg-black hover:text-white hover:rounded-md p-2">
+        <div className="flex gap-4 hover:cursor-pointer hover:bg-black hover:text-white hover:rounded-md p-2"
+            onClick={handleLogout}>
             <LogOutIcon />
             <div>Logout</div>
         </div>
