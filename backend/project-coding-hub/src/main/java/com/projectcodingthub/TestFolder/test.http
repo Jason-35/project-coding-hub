@@ -1,3 +1,4 @@
+// signup
 POST http://localhost:8080/auth/signup HTTP/1.1
 content-type: application/json
 
@@ -8,7 +9,7 @@ content-type: application/json
 }
 
 ###
-
+// login
 POST http://localhost:8080/auth/login HTTP/1.1
 content-type: application/json
 
@@ -18,27 +19,29 @@ content-type: application/json
 }
 
 ###
-
-GET http://localhost:8080/protected HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNzMxNjIzNjQ3LCJleHAiOjE3MzE2MjcyNDd9.YAklEcNv_pfZUY7jpBLtNs_M20GnEYAhYp2PQjOj3sI
+// Create server
+POST http://localhost:8080/user/server/create HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNzMzOTYwODY4LCJleHAiOjE3MzM5NjQ0Njh9.BIJp0rvImKTTzFJricEugY-lo7sqhsEjfuqRQYA0JCg
 content-type: application/json
 
 {
+    "userInfo": {
+        "username": "test",
+        "id": 1
+    },
+    "serverData": {
+        "serverDescription": "",
+        "serverImg": "",
+        "serverName": "testServer",
+        "serverStatus": true,
+        "serverTags": []
+    }
 }
 
 ###
+// get all servers
+GET http://localhost:8080/server/get/all HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNzMzOTYwODY4LCJleHAiOjE3MzM5NjQ0Njh9.BIJp0rvImKTTzFJricEugY-lo7sqhsEjfuqRQYA0JCg
+content-type: application/json
 
-GET http://localhost:8080/home HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmMiLCJpYXQiOjE3MzM0Mzk0NTEsImV4cCI6MTczMzQ0MzA1MX0.rqEAD5iB2McJenQFze0l2Mox7UzYZU8UnVuq-SSzvns
-Content-Type: application/json
-
-{ 
-}
-
-###
-
-GET http://localhost:8080/auth/home HTTP/1.1
-Content-Type: application/json
-
-{ 
-}
+{}
