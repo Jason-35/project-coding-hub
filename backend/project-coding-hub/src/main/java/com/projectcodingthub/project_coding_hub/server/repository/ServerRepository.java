@@ -17,15 +17,5 @@ import jakarta.transaction.Transactional;
 @Repository
 @Transactional
 public interface ServerRepository extends JpaRepository<Server, UUID>{
-
-    @Query("SELECT sr FROM Server sr WHERE sr.name = :name")
-    Optional<List<Server>> findAllServerNameAfk(@Param("name") String name);
-
-    Optional<Server> findByName(@Param("name") String name);
-
     Optional<List<Server>> findAllByOwner_Id(Integer id);
-
-    
-    
-
 }

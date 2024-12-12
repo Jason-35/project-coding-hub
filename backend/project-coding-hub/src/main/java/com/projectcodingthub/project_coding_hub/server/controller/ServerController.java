@@ -21,23 +21,20 @@ import com.projectcodingthub.project_coding_hub.server.service.ServerService;
 @RequestMapping("/server")
 public class ServerController {
 
-    private final ServerRepository serverRepository;
     private final ServerService serverService;
 
-    public ServerController(ServerRepository serverRepository, ServerService serverService) {
-        this.serverRepository = serverRepository;
+    public ServerController(ServerService serverService) {
         this.serverService = serverService;
     }
 
     @GetMapping("get/all")
-    public List<Server> getAllServer() {
-        return serverRepository.findAll();
+    public ResponseEntity<List<Server>> getAllServer() {
+        return ResponseEntity.ok(serverService.getAllServers());
     }
 
-    @GetMapping("get/one")
-    public ResponseEntity<List<Server>> getUserServer() {
-        Optional<List<Server>> servers = serverRepository.findAllByOwner_Id(1);
-        return ResponseEntity.ok(servers.get());
+    @GetMapping("get/{userId}")
+    public ResponseEntity<List<Server>> getUserServer(@PathVariable Integer userId) {
+        return ResponseEntity.ok(serverService.getUserServers(userId));
     }
 
 }

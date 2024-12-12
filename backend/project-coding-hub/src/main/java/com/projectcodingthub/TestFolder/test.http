@@ -21,7 +21,7 @@ content-type: application/json
 ###
 // Create server
 POST http://localhost:8080/user/server/create HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNzMzOTgwMDM2LCJleHAiOjE3MzM5ODM2MzZ9.rQnjdWxWcmDFwGqOMIGjAfB8jHOyZPcFrBmkjD-5Fug
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNzM0MDM1Nzc1LCJleHAiOjE3MzQwMzkzNzV9.LENKe8WStSOrt36LpRxOF-zEY_UVNopE9-b_eyOXYKE
 content-type: application/json
 
 {
@@ -41,7 +41,7 @@ content-type: application/json
 ###
 // Create server
 POST http://localhost:8080/user/server/create HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNzMzOTc5NDE1LCJleHAiOjE3MzM5ODMwMTV9.uV9bHJSs-15bSlX59a_KjjPnYbZ9d5ktEU_cstnrX-U
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNzM0MDM1Nzc1LCJleHAiOjE3MzQwMzkzNzV9.LENKe8WStSOrt36LpRxOF-zEY_UVNopE9-b_eyOXYKE
 content-type: application/json
 
 {
@@ -69,7 +69,7 @@ content-type: application/json
 ###
 // get user owned server
 GET http://localhost:8080/server/get/1 HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNzMzOTgwMDM2LCJleHAiOjE3MzM5ODM2MzZ9.rQnjdWxWcmDFwGqOMIGjAfB8jHOyZPcFrBmkjD-5Fug
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNzM0MDM1Nzc1LCJleHAiOjE3MzQwMzkzNzV9.LENKe8WStSOrt36LpRxOF-zEY_UVNopE9-b_eyOXYKE
 content-type: application/json
 
 {}

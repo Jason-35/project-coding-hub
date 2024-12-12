@@ -16,10 +16,12 @@ public class ServerService {
         this.serverRepository = serverRepository;
     }
     
-    // public List<Server> getUserServers(Integer userId) {
-    //     // System.out.println(serverRepository.findAllByUserId(userId));
-    //     System.out.println("ran");
-    //     return serverRepository.findAllByOwner_Id(userId);
-    // }
+    public List<Server> getUserServers(Integer userId) {
+        return serverRepository.findAllByOwner_Id(userId).get();
+    }
+
+    public List<Server> getAllServers() {
+        return serverRepository.findAll();
+    }
     
 }
