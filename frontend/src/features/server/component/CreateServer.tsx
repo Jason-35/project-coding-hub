@@ -73,7 +73,7 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
         if (base64img !== "") {
             data.serverImg = base64img;
         } else {
-            data.serverImg = data.serverName.charAt(0)
+            data.serverImg = ""
         }
 
         axios.post("http://localhost:8080/user/server/create", 
