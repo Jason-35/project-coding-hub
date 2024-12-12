@@ -37,9 +37,11 @@ public class UserServerService {
             serverInfo.getServerTags()
         );
 
-        // System.out.println(serverInfo.getServerImg());
-        
         return serverRepository.save(server);
+    }
+
+    public User getUser() {
+        return userRepository.findById(1).get();
     }
 
 }

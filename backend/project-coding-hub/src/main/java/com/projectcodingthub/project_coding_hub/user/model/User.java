@@ -38,7 +38,7 @@ public class User implements UserDetails {
     private String email;
 
     @OneToMany(mappedBy = "owner")
-    private Set<Server> OwnedServer = new HashSet<>();
+    private Set<Server> ownedServer = new HashSet<>();
 
     @SuppressWarnings("unused")
     private User(){}
@@ -54,7 +54,7 @@ public class User implements UserDetails {
     }
 
     public Set<Server> getOwnedServer() {
-        return this.OwnedServer;
+        return this.ownedServer;
     }
         
     @Override
