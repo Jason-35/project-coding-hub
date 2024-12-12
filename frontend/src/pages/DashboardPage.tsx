@@ -15,7 +15,7 @@ function DashboardPage() {
               Authorization: `Bearer ${token}`
             }
         };
-        axios.get("http://localhost:8080/home", config).then((res) => {
+        axios.get("http://localhost:8080/server/get/1", config).then((res) => {
             console.log(res.data)
         })
     }

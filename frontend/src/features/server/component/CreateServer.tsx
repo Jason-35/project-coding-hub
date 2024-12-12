@@ -59,6 +59,7 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
     }
 
     const formSubmit = async(data: ServerFormValue) => {
+        setShowCreateServer(false)
         const token = getJwtToken()
         const config = {
             headers: {
