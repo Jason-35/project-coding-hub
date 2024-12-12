@@ -1,5 +1,5 @@
 import { CompassIcon } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import UserProfile from "../features/user/component/UserProfile"
 import ServerIcon from "../features/projectServer/component/ServerIcon"
@@ -8,11 +8,37 @@ import flappy from "../assets/flappy.png"
 import Tooltip from "./Tooltip"
 import UserMenu from "../features/user/component/UserMenu"
 import CreateServer from "../features/server/component/CreateServer"
+import axios from "axios"
+import { getJwtToken, getUserInfo } from "../features/auth/util/util"
 
 function Sidebar() {
+    type Server = {
+        id: string,
+        img: string,
+        name: string,
+        tags: string[],
+        status: boolean,
+        description: string
+    }
+    const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState<boolean>(false)
     const [showCreateServer, setShowCreateServer] = useState<boolean>(false)
-    const navigate = useNavigate()
+    const [userServer, setUserServer] = useState<Server[]>([])
+
+    useEffect(() => {
+        console.log("??")
+        const token = getJwtToken()
+        const userId = getUserInfo()?.id
+        const config = {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+        };
+        axios.get(`http://localhost:8080/server/get/${userId}`, config).then((res) => {
+            setUserServer(res.data)
+        })
+    }, [])
+
     return (
         <div className={`z-20 fixed w-screen bg-transparent h-screen overflow-y-scroll ${!showCreateServer ? "pointer-events-none" : ""}`}>
     
@@ -25,42 +51,11 @@ function Sidebar() {
                 </div>
                 <div className="border-[1px] border-black" />
 
-                <Tooltip content={"Flappy Bird"}>
-                        <ServerIcon serverName={"Flappy Bird"} serverImg={flappy} serverUrl="abc" />
-                </Tooltip>
-                <Tooltip content={"Flappy Bird"}>
-                        <ServerIcon serverName={"Flappy Bird"} serverImg={flappy} serverUrl="def"/>
-                </Tooltip>
-                <Tooltip content={"Super Kitty"}>
-                        <ServerIcon serverName={"Super Kitty"} serverImg={kitty} serverUrl="ghi"/>
-                </Tooltip>
-                <Tooltip content={"Flappy Bird"}>
-                        <ServerIcon serverName={"Flappy Bird"} serverImg={flappy} serverUrl="abc" />
-                </Tooltip>
-                <Tooltip content={"Flappy Bird"}>
-                        <ServerIcon serverName={"Flappy Bird"} serverImg={flappy} serverUrl="def"/>
-                </Tooltip>
-                <Tooltip content={"Super Kitty"}>
-                        <ServerIcon serverName={"Super Kitty"} serverImg={kitty} serverUrl="ghi"/>
-                </Tooltip>
-                <Tooltip content={"Flappy Bird"}>
-                        <ServerIcon serverName={"Flappy Bird"} serverImg={flappy} serverUrl="abc" />
-                </Tooltip>
-                <Tooltip content={"Flappy Bird"}>
-                        <ServerIcon serverName={"Flappy Bird"} serverImg={flappy} serverUrl="def"/>
-                </Tooltip>
-                <Tooltip content={"Super Kitty"}>
-                        <ServerIcon serverName={"Super Kitty"} serverImg={kitty} serverUrl="ghi"/>
-                </Tooltip>
-                <Tooltip content={"Flappy Bird"}>
-                        <ServerIcon serverName={"Flappy Bird"} serverImg={flappy} serverUrl="abc" />
-                </Tooltip>
-                <Tooltip content={"Flappy Bird"}>
-                        <ServerIcon serverName={"Flappy Bird"} serverImg={flappy} serverUrl="def"/>
-                </Tooltip>
-                <Tooltip content={"Super Kitty"}>
-                        <ServerIcon serverName={"Super Kitty"} serverImg={kitty} serverUrl="ghi"/>
-                </Tooltip>
+                {userServer.map((server) => (
+                    <Tooltip key={server.id} content={server.name}>
+                            <ServerIcon serverName={server.name} serverImg={server.img} serverUrl={server.id} />
+                    </Tooltip>
+                ))}
 
                 <Tooltip content={"Explore"}>
                     <div onClick={() => navigate("projectBoard")} className="aspect-square rounded-lg flex justify-center items-center bg-orange-300 hover:cursor-pointer">
@@ -68,7 +63,6 @@ function Sidebar() {
                     </div>
                 </Tooltip>
             
-                
             </div>    
                 {showCreateServer && <CreateServer setShowCreateServer={setShowCreateServer} /> }
         </div>

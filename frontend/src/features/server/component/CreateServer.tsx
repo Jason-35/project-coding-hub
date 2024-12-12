@@ -5,6 +5,7 @@ import { removeValue } from "../util/Util"
 import { useForm } from "react-hook-form"
 import axios from "axios"
 import { getJwtToken, getUserInfo } from "../../auth/util/util"
+import { useNavigate } from "react-router-dom"
 
 function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatch<React.SetStateAction<boolean>>}) {
     type ServerFormValue = {
@@ -20,7 +21,8 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
     const [statPrivate, setStatPrivate] = useState<boolean>(false)
     const [serverImg, setServerImg] = useState<File | undefined>()
     const [base64img, setBase64Img] = useState<string>("")
-    
+    const navigate = useNavigate()
+
     useEffect(() => {
         if(serverImg) {
             const reader = new FileReader();
@@ -83,7 +85,8 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
             "serverData" : data
         },
         config).then((res) => {
-            console.log(res.data)
+            window.location.reload()
+            navigate(`/u/${res.data}`)
         })   
     }
 
