@@ -1,28 +1,34 @@
 import axios from 'axios'
-import React, { useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
+import { useEffect } from 'react'
 import { getJwtToken } from '../features/auth/util/util'
+import { useWebSocket } from '../features/ws/Ws'
 
 function DashboardPage() {
+    const webSocketClient = useWebSocket();
+    
     useEffect(() => {
-        console.log("dashboard rendered!")
-    })
+        if(webSocketClient) {
+            webSocketClient.subscribe("/topic/greeting", (message) => {
+                console.log("new message", message.body)
+            })
+        }
+    }, [webSocketClient])
 
-    const test = () => {
+    const handleClick = () => {
         const token = getJwtToken()
         const config = {
             headers: {
               Authorization: `Bearer ${token}`
             }
         };
-        axios.get("http://localhost:8080/server/get/1", config).then((res) => {
-            console.log(res.data)
-        })
+
+        webSocketClient?.send("/app/hello", config, "Hello from client")
     }
+
   return (
     <div>
         dashboard
-        <button className='border-4' onClick={test}>btn</button>
+        <button onClick={handleClick}>Click me!</button>
     </div>
   )
 }
