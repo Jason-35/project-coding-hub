@@ -42,6 +42,7 @@ function ProjectBoard() {
                 servers.map((server) => (
                     <Post 
                         key={server.id} 
+                        id={server.id}
                         title={server.name} 
                         description={server.description} 
                         icon={server.img} 

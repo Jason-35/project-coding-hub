@@ -6,13 +6,13 @@ import { useWebSocket } from '../features/ws/Ws'
 function DashboardPage() {
     const webSocketClient = useWebSocket();
     
-    useEffect(() => {
-        if(webSocketClient) {
-            webSocketClient.subscribe("/topic/greeting", (message) => {
-                console.log("new message", message.body)
-            })
-        }
-    }, [webSocketClient])
+    // useEffect(() => {
+    //     if(webSocketClient) {
+    //         webSocketClient.subscribe("/topic/greeting", (message) => {
+    //             console.log("new message: ", message.body, " This is auto updated!")
+    //         })
+    //     }
+    // }, [webSocketClient])
 
     const handleClick = () => {
         const token = getJwtToken()
@@ -22,7 +22,7 @@ function DashboardPage() {
             }
         };
 
-        webSocketClient?.send("/app/hello", config, "Hello from client")
+        // webSocketClient?.send("/app/hello", config, "Hello from client")
     }
 
   return (

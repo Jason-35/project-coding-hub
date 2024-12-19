@@ -1,6 +1,9 @@
 import Chip from "../../../components/Chip"
+import { getUserInfo } from "../../auth/util/util";
+import { useWebSocket } from "../../ws/Ws";
 type PostProps = {
     title: string,
+    id: string,
     genre?: string[],
     description: string,
     icon?: string,
@@ -8,8 +11,23 @@ type PostProps = {
     members: number,
 }
 
-function Post({title, genre, description, icon, open, members} : PostProps) {
-  return (
+function Post({title, genre, description, icon, open, members, id} : PostProps) {
+
+    const webSocketClient = useWebSocket();
+    console.log("Runner up!")
+    const handleJoin = () => {
+        const userInfo = getUserInfo()
+        if(webSocketClient) {
+            const joinReq = webSocketClient.subscribe(`/topic/request/${id}`, (message) => {
+                console.log("new message: ", message.body, " This is auto updated!")
+                joinReq.unsubscribe()
+            })
+
+            webSocketClient?.send(`/app/request/${id}`, {}, JSON.stringify(userInfo))
+        }
+    }
+
+    return (
     <div className="w-96 rounded-lg border-2 p-2 h-max-92 scrollbar-hidden">
         <div className="flex border-b-4 border-orange-400 pb-1 bg-white rounded-t-full mb-2">
             {icon ? <img width={72} height={64} src={icon} className="rounded-lg aspect-square" /> : 
@@ -37,7 +55,8 @@ function Post({title, genre, description, icon, open, members} : PostProps) {
                 </div>
                 <div className="flex justify-center items-center">
                     {open ? 
-                    <div className="hover:cursor-pointer hover:bg-blue-500 py-1 px-2 rounded-md bg-blue-400 text-white">
+                    <div className="hover:cursor-pointer hover:bg-blue-500 py-1 px-2 rounded-md bg-blue-400 text-white"
+                        onClick={handleJoin}>
                         Join
                     </div> 
                     : 
