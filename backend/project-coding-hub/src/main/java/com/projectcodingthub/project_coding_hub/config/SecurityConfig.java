@@ -52,6 +52,7 @@ public class SecurityConfig {
             .cors(c -> c.configurationSource(corsConfigurationSource()))
             .authorizeHttpRequests(auth -> {
                 auth.requestMatchers("/auth/**").permitAll();
+                auth.requestMatchers("/ws").permitAll();
                 auth.anyRequest().authenticated();
             })
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
