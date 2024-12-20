@@ -6,14 +6,6 @@ import { useWebSocket } from '../features/ws/Ws'
 function DashboardPage() {
     const webSocketClient = useWebSocket();
     
-    // useEffect(() => {
-    //     if(webSocketClient) {
-    //         webSocketClient.subscribe("/topic/greeting", (message) => {
-    //             console.log("new message: ", message.body, " This is auto updated!")
-    //         })
-    //     }
-    // }, [webSocketClient])
-
     const handleClick = () => {
         const token = getJwtToken()
         const config = {

@@ -2,14 +2,14 @@ import { CompassIcon } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import UserProfile from "../features/user/component/UserProfile"
+import Inbox from "../features/user/component/Inbox"
 import ServerIcon from "../features/projectServer/component/ServerIcon"
-import kitty from "../assets/kitty.png"
-import flappy from "../assets/flappy.png"
 import Tooltip from "./Tooltip"
 import UserMenu from "../features/user/component/UserMenu"
 import CreateServer from "../features/server/component/CreateServer"
 import axios from "axios"
 import { getJwtToken, getUserInfo } from "../features/auth/util/util"
+import { useWebSocket } from "../features/ws/Ws"
 
 function Sidebar() {
     type Server = {
@@ -24,9 +24,9 @@ function Sidebar() {
     const [showMenu, setShowMenu] = useState<boolean>(false)
     const [showCreateServer, setShowCreateServer] = useState<boolean>(false)
     const [userServer, setUserServer] = useState<Server[]>([])
+    const [unread, setUnread] = useState(2)
 
     useEffect(() => {
-        console.log("??")
         const token = getJwtToken()
         const userId = getUserInfo()?.id
         const config = {
@@ -39,12 +39,25 @@ function Sidebar() {
         })
     }, [])
 
+    const webSocketClient = useWebSocket()
+    useEffect(() => {
+        if(webSocketClient) {
+            const userId = getUserInfo()?.id
+            webSocketClient.subscribe(`/topic/notification/${userId}`, (message) => {
+                console.log("new message: ", message.body, "from" + `/topic/notification/${userId}`)
+            })
+        }
+        return () => webSocketClient?.unsubscribe("/topic/notification/abc");
+    }, [webSocketClient])
+
     return (
-        <div className={`z-20 fixed w-screen bg-transparent h-screen overflow-y-scroll ${!showCreateServer ? "pointer-events-none" : ""}`}>
-    
+        <div className={`z-20 fixed w-screen bg-transparent h-screen overflow-y-scroll ${!showCreateServer ? "pointer-events-none" : ""}`}>    
+            <div className="absolute top-1/2 left-1/2 w-1/4 h-2/3 -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
+                <Inbox />
+            </div>
             <div className="sticky border-r-2 min-h-screen border-blue-400 flex flex-col gap-3 w-fit p-4 bg-white pointer-events-auto">
                 <div>
-                    <UserMenu showMenu={showMenu} setShowMenu={setShowMenu} setShowCreateServer={setShowCreateServer} />
+                    <UserMenu unread={unread} showMenu={showMenu} setShowMenu={setShowMenu} setShowCreateServer={setShowCreateServer} />
                     <div className="hover:cursor-pointer" onClick={() => setShowMenu(!showMenu)}>
                         <UserProfile />
                     </div>
@@ -64,7 +77,7 @@ function Sidebar() {
                 </Tooltip>
             
             </div>    
-                {showCreateServer && <CreateServer setShowCreateServer={setShowCreateServer} /> }
+            {showCreateServer && <CreateServer setShowCreateServer={setShowCreateServer} /> }
         </div>
   )
 }

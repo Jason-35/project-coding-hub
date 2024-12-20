@@ -14,16 +14,10 @@ type PostProps = {
 function Post({title, genre, description, icon, open, members, id} : PostProps) {
 
     const webSocketClient = useWebSocket();
-    console.log("Runner up!")
     const handleJoin = () => {
         const userInfo = getUserInfo()
         if(webSocketClient) {
-            const joinReq = webSocketClient.subscribe(`/topic/request/${id}`, (message) => {
-                console.log("new message: ", message.body, " This is auto updated!")
-                joinReq.unsubscribe()
-            })
-
-            webSocketClient?.send(`/app/request/${id}`, {}, JSON.stringify(userInfo))
+            webSocketClient.send(`/app/request/${id}`, {}, JSON.stringify(userInfo))
         }
     }
 
