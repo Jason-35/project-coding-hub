@@ -18,4 +18,7 @@ import jakarta.transaction.Transactional;
 @Transactional
 public interface ServerRepository extends JpaRepository<Server, UUID>{
     Optional<List<Server>> findAllByOwner_Id(Integer id);
+
+    @Query("SELECT s.owner.id FROM Server s WHERE s.id = :id")
+    Optional<Integer> findOwnerIdByServerId(UUID id);
 }
