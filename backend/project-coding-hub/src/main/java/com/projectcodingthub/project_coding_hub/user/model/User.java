@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.projectcodingthub.project_coding_hub.inbox.model.Inbox;
 import com.projectcodingthub.project_coding_hub.server.model.Server;
 
 import jakarta.persistence.Column;
@@ -39,6 +40,9 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "owner")
     private Set<Server> ownedServer = new HashSet<>();
+
+    @OneToMany(mappedBy = "owner")
+    private Set<Inbox> inbox = new HashSet<>();
 
     @SuppressWarnings("unused")
     private User(){}

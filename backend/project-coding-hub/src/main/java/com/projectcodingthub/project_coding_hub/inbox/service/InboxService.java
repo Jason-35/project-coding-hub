@@ -1,4 +1,4 @@
-package com.projectcodingthub.project_coding_hub.notification.service;
+package com.projectcodingthub.project_coding_hub.inbox.service;
 
 import java.util.UUID;
 
@@ -8,11 +8,11 @@ import com.projectcodingthub.project_coding_hub.server.repository.ServerReposito
 import com.projectcodingthub.project_coding_hub.user.repository.UserRepository;
 
 @Service
-public class NotificationService {
+public class InboxService {
     private final UserRepository userRepository;
     private final ServerRepository serverRepository;
 
-    public NotificationService(UserRepository userRepository, ServerRepository serverRepository) {
+    public InboxService(UserRepository userRepository, ServerRepository serverRepository) {
         this.userRepository = userRepository;
         this.serverRepository = serverRepository;
     }

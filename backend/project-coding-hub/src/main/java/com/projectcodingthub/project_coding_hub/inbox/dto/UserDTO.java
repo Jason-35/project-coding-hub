@@ -1,4 +1,4 @@
-package com.projectcodingthub.project_coding_hub.notification.dto;
+package com.projectcodingthub.project_coding_hub.inbox.dto;
 
 public class UserDTO {
     String username;
