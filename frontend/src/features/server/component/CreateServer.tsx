@@ -99,7 +99,7 @@ function CreateServer({setShowCreateServer} : {setShowCreateServer:React.Dispatc
   return (
     <div className='fixed z-30 w-screen h-screen top-0 left-0 flex justify-center items-center bg-black/40'>
         <form 
-            className="relative z-40 w-2/6 p-4 h-fit bg-yellow-400 rounded-md opacity-100 flex flex-col justify-center items-center gap-4"
+            className="relative z-40 w-3/12 p-4 h-fit bg-yellow-400 rounded-md opacity-100 flex flex-col justify-center items-center gap-4"
             onSubmit={handleSubmit(formSubmit)}
             onKeyDown={preventEnterSubmit}>
             <div className="absolute top-0 right-0 -translate-x-2 translate-y-2  hover:cursor-pointer" onClick={() => setShowCreateServer(false)}>

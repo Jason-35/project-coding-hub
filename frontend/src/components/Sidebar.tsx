@@ -22,6 +22,7 @@ function Sidebar() {
     }
     const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState<boolean>(false)
+    const [showInbox, setShowInbox] = useState<boolean>(false)
     const [showCreateServer, setShowCreateServer] = useState<boolean>(false)
     const [userServer, setUserServer] = useState<Server[]>([])
     const [unread, setUnread] = useState(2)
@@ -52,12 +53,13 @@ function Sidebar() {
 
     return (
         <div className={`z-20 fixed w-screen bg-transparent h-screen overflow-y-scroll ${!showCreateServer ? "pointer-events-none" : ""}`}>    
+            {showInbox && 
             <div className="absolute top-1/2 left-1/2 w-1/4 h-2/3 -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
-                <Inbox />
-            </div>
+                <Inbox setShowInbox={setShowInbox} />
+            </div>}
             <div className="sticky border-r-2 min-h-screen border-blue-400 flex flex-col gap-3 w-fit p-4 bg-white pointer-events-auto">
                 <div>
-                    <UserMenu unread={unread} showMenu={showMenu} setShowMenu={setShowMenu} setShowCreateServer={setShowCreateServer} />
+                    <UserMenu unread={unread} showMenu={showMenu} setShowMenu={setShowMenu} setShowCreateServer={setShowCreateServer} setShowInbox={setShowInbox} />
                     <div className="hover:cursor-pointer" onClick={() => setShowMenu(!showMenu)}>
                         <UserProfile />
                     </div>

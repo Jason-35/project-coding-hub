@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { useWebSocket } from "../../ws/Ws"
 import { getUserInfo } from "../../auth/util/util"
 
-function UserMenu({unread, showMenu, setShowMenu, setShowCreateServer} : {unread: number, showMenu: boolean, setShowMenu: React.Dispatch<React.SetStateAction<boolean>>, setShowCreateServer: React.Dispatch<React.SetStateAction<boolean>>}) {
+function UserMenu({unread, showMenu, setShowMenu, setShowCreateServer, setShowInbox} : {unread: number, showMenu: boolean, setShowMenu: React.Dispatch<React.SetStateAction<boolean>>, setShowCreateServer: React.Dispatch<React.SetStateAction<boolean>>, setShowInbox: React.Dispatch<React.SetStateAction<boolean>>}) {
 
     const navigate = useNavigate()
     
@@ -26,7 +26,11 @@ function UserMenu({unread, showMenu, setShowMenu, setShowCreateServer} : {unread
             <UserIcon />
             <div>Profile</div>
         </div>
-        <div className="flex gap-4 hover:cursor-pointer hover:bg-black hover:text-white hover:rounded-md p-2">
+        <div className="flex gap-4 hover:cursor-pointer hover:bg-black hover:text-white hover:rounded-md p-2"
+            onClick={() => {
+                setShowInbox(true)
+                setShowMenu(false)
+            }}>
             <div className="relative">
                 <InboxIcon />
                 {unread > 0 &&
