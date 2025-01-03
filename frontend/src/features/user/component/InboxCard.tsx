@@ -1,21 +1,21 @@
 type InboxCardType = {
-    user: string,
+    sender: string,
     project: string,
     date: string
 }
 
-function InboxCard({user, project, date} : InboxCardType) {
+function InboxCard({sender, project, date} : InboxCardType) {
   return (
     <div>
         <div className="flex p-2 gap-2 items-center">
             <div className="self-start">
-                <div className="border-2 border-black rounded-lg aspect-square w-14 h-14 flex justify-center items-center">
-                    A
+                <div className="border-2 bg-orange-500 text-white border-black rounded-lg aspect-square w-14 h-14 flex justify-center items-center">
+                    {sender.charAt(0)}
                 </div>
             </div>
             <div className="flex flex-col gap-2 flex-1">
                 <div>
-                    {user} invites you to the {project} project
+                    {sender} invites you to the {project} project
                 </div>
                 <div className="italic text-[12px]">
                     {date}

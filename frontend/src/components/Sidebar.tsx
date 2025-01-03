@@ -10,6 +10,7 @@ import CreateServer from "../features/server/component/CreateServer"
 import axios from "axios"
 import { getJwtToken, getUserInfo } from "../features/auth/util/util"
 import { useWebSocket } from "../features/ws/Ws"
+import InboxCard from "../features/user/component/InboxCard"
 
 function Sidebar() {
     type Server = {
@@ -20,12 +21,20 @@ function Sidebar() {
         status: boolean,
         description: string
     }
+
+    type InboxCardType = {
+        sender: string,
+        project: string,
+        date: string
+    }
+
     const navigate = useNavigate()
     const [showMenu, setShowMenu] = useState<boolean>(false)
     const [showInbox, setShowInbox] = useState<boolean>(false)
     const [showCreateServer, setShowCreateServer] = useState<boolean>(false)
     const [userServer, setUserServer] = useState<Server[]>([])
-    const [unread, setUnread] = useState(2)
+    const [unread, setUnread] = useState(0)
+    const [mails, setMails] = useState<InboxCardType[]>([])
 
     useEffect(() => {
         const token = getJwtToken()
@@ -45,7 +54,9 @@ function Sidebar() {
         if(webSocketClient) {
             const userId = getUserInfo()?.id
             webSocketClient.subscribe(`/topic/notification/${userId}`, (message) => {
-                console.log("new message: ", message.body, "from" + `/topic/notification/${userId}`)
+                let newMail: InboxCardType = JSON.parse(message.body) 
+                setMails((prev) => [...prev, newMail]);
+                console.log("from the socket: " , mails.length)
             })
         }
         return () => webSocketClient?.unsubscribe("/topic/notification/abc");
@@ -55,7 +66,7 @@ function Sidebar() {
         <div className={`z-20 fixed w-screen bg-transparent h-screen overflow-y-scroll ${!showCreateServer ? "pointer-events-none" : ""}`}>    
             {showInbox && 
             <div className="absolute top-1/2 left-1/2 w-1/4 h-2/3 -translate-x-1/2 -translate-y-1/2 pointer-events-auto">
-                <Inbox setShowInbox={setShowInbox} />
+                <Inbox setShowInbox={setShowInbox} mails={mails} />
             </div>}
             <div className="sticky border-r-2 min-h-screen border-blue-400 flex flex-col gap-3 w-fit p-4 bg-white pointer-events-auto">
                 <div>

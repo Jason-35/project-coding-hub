@@ -1,7 +1,6 @@
 import { UserIcon, InboxIcon, UsersIcon, LogOutIcon, SquarePlusIcon } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { useWebSocket } from "../../ws/Ws"
 import { getUserInfo } from "../../auth/util/util"
 
 function UserMenu({unread, showMenu, setShowMenu, setShowCreateServer, setShowInbox} : {unread: number, showMenu: boolean, setShowMenu: React.Dispatch<React.SetStateAction<boolean>>, setShowCreateServer: React.Dispatch<React.SetStateAction<boolean>>, setShowInbox: React.Dispatch<React.SetStateAction<boolean>>}) {
