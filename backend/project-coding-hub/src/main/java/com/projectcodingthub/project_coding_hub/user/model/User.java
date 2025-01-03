@@ -41,8 +41,11 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "owner")
     private Set<Server> ownedServer = new HashSet<>();
 
-    @OneToMany(mappedBy = "owner")
-    private Set<Inbox> inbox = new HashSet<>();
+    @OneToMany(mappedBy = "recipient")
+    private Set<Inbox> recipient = new HashSet<>();
+
+    @OneToMany(mappedBy = "sender")
+    private Set<Inbox> sender = new HashSet<>();
 
     @SuppressWarnings("unused")
     private User(){}

@@ -40,8 +40,8 @@ public class UserServerService {
         return serverRepository.save(server);
     }
 
-    public User getUser() {
-        return userRepository.findById(1).get();
+    public User getUser(Integer id) {
+        return userRepository.findById(id).get();
     }
 
 }

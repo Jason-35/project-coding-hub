@@ -21,16 +21,22 @@ public class Inbox {
     private Integer id;
 
     private boolean unread;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "owner_id", referencedColumnName = "id")
+    @ManyToOne()
+    @JoinColumn(name = "recipient", referencedColumnName = "id")
     @JsonIgnore
-    private User owner;
-    private InboxType type;
+    private User recipient;
+
+    @ManyToOne()
+    @JoinColumn(name = "sender", referencedColumnName = "id")
+    @JsonIgnore
+    private User sender;
 
     public Inbox() {}
 
-    public Inbox(boolean unread) {
+    public Inbox(User sender, User recipient, boolean unread) {
         this.unread = unread;
+        this.sender = sender;
+        this.recipient = recipient;
     }
 
     public Integer getId() {
@@ -41,11 +47,11 @@ public class Inbox {
         return this.unread;
     }
 
-    public InboxType getType() {
-        return this.type;
+    public User getRecipient() {
+        return this.recipient;
     }
 
-    public User getOwner() {
-        return this.owner;
+    public User getSender() {
+        return this.sender;
     }
 }

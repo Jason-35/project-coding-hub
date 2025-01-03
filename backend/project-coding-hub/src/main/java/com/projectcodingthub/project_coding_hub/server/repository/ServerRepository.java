@@ -11,6 +11,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.projectcodingthub.project_coding_hub.server.model.Server;
+import com.projectcodingthub.project_coding_hub.user.model.User;
 
 import jakarta.transaction.Transactional;
 
@@ -21,4 +22,10 @@ public interface ServerRepository extends JpaRepository<Server, UUID>{
 
     @Query("SELECT s.owner.id FROM Server s WHERE s.id = :id")
     Optional<Integer> findOwnerIdByServerId(UUID id);
+
+    @Query("SELECT s.owner FROM Server s WHERE s.id = :id")
+    Optional<User> findOwnerByServerId(UUID id);
+
+    @Query("SELECT s FROM Server s WHERE s.id = :id")
+    Optional<Server> findServerByServerId(UUID id);
 }
