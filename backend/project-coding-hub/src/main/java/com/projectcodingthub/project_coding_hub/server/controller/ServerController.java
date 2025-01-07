@@ -37,4 +37,5 @@ public class ServerController {
         return ResponseEntity.ok(serverService.getUserServers(userId));
     }
 
+
 }

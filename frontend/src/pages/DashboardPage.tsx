@@ -1,10 +1,9 @@
 import axios from 'axios'
 import { useEffect } from 'react'
-import { getJwtToken } from '../features/auth/util/util'
+import { getJwtToken, getUserInfo } from '../features/auth/util/util'
 import { useWebSocket } from '../features/ws/Ws'
 
 function DashboardPage() {
-    const webSocketClient = useWebSocket();
     
     const handleClick = () => {
         const token = getJwtToken()
@@ -13,8 +12,10 @@ function DashboardPage() {
               Authorization: `Bearer ${token}`
             }
         };
-
-        // webSocketClient?.send("/app/hello", config, "Hello from client")
+        const userId = getUserInfo()?.id
+        axios.get(`http://localhost:8080/get/${userId}/mail`, config).then((res) => {
+            console.log(res.data)
+        })
     }
 
   return (

@@ -73,4 +73,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwiaWF0IjoxNzM0MDM1N
 content-type: application/json
 
 {}
+###
+
+GET http://localhost:8080/get/1/mail HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhYmMiLCJpYXQiOjE3MzYyMTA1MjMsImV4cCI6MTczNjIxNDEyM30.p_YMQNxmy5sGx21qRuJPvb7ySEUY-zF6c7Ce_tx-FpY
+content-type: application/json
+
+{}
 

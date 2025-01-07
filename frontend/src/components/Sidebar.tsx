@@ -10,7 +10,6 @@ import CreateServer from "../features/server/component/CreateServer"
 import axios from "axios"
 import { getJwtToken, getUserInfo } from "../features/auth/util/util"
 import { useWebSocket } from "../features/ws/Ws"
-import InboxCard from "../features/user/component/InboxCard"
 
 function Sidebar() {
     type Server = {
@@ -47,6 +46,9 @@ function Sidebar() {
         axios.get(`http://localhost:8080/server/get/${userId}`, config).then((res) => {
             setUserServer(res.data)
         })
+        axios.get(`http://localhost:8080/get/${userId}/mail`, config).then((res) => {
+            setMails(res.data)
+        })
     }, [])
 
     const webSocketClient = useWebSocket()
@@ -56,6 +58,7 @@ function Sidebar() {
             webSocketClient.subscribe(`/topic/notification/${userId}`, (message) => {
                 let newMail: InboxCardType = JSON.parse(message.body) 
                 setMails((prev) => [...prev, newMail]);
+                setUnread((prev) => prev += 1)
                 console.log("from the socket: " , mails.length)
             })
         }

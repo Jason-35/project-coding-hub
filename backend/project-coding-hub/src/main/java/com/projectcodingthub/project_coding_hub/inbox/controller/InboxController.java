@@ -1,5 +1,7 @@
 package com.projectcodingthub.project_coding_hub.inbox.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -7,6 +9,7 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.projectcodingthub.project_coding_hub.inbox.dto.ServerRequestDTO;
@@ -38,9 +41,12 @@ public class InboxController {
         User sender = userServerService.getUser(userDto.getId());
         User server_owner = InboxService.getRequestedServerOwner(serverId);
         Server server = InboxService.getRequestedServer(serverId);
-        InboxService.saveInbox(server_owner, sender, true);
+        InboxService.saveInbox(server_owner, sender, server, true);
         ServerRequestDTO serverRequest = new ServerRequestDTO(userDto.getUsername(), server.getName(), "Friday 1:42 pm");
         template.convertAndSend("/topic/notification/" + recieverId, serverRequest);
     }
+
+
+
 
 }

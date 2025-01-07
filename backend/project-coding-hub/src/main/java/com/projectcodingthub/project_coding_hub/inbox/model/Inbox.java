@@ -1,6 +1,9 @@
 package com.projectcodingthub.project_coding_hub.inbox.model;
 
+import java.util.UUID;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.projectcodingthub.project_coding_hub.server.model.Server;
 import com.projectcodingthub.project_coding_hub.user.model.User;
 
 import jakarta.persistence.CascadeType;
@@ -31,12 +34,25 @@ public class Inbox {
     @JsonIgnore
     private User sender;
 
+
+    private String recipientName;
+
+    private String senderName;
+
+    private String serverName;
+
+    private UUID serverUUID;
+
     public Inbox() {}
 
-    public Inbox(User sender, User recipient, boolean unread) {
+    public Inbox(User sender, User recipient, UUID serverUUID, String serverName, boolean unread) {
         this.unread = unread;
         this.sender = sender;
         this.recipient = recipient;
+        this.senderName = sender.getUsername();
+        this.recipientName = recipient.getUsername();
+        this.serverName = serverName;
+        this.serverUUID = serverUUID;
     }
 
     public Integer getId() {
@@ -54,4 +70,22 @@ public class Inbox {
     public User getSender() {
         return this.sender;
     }
+
+    public String getRecipientName() {
+        return this.recipientName;
+    }
+
+    public String getSenderName() {
+        return this.senderName;
+    }
+
+    public UUID getServerUUID() {
+        return this.serverUUID;
+    }
+
+    public String getServerName() {
+        return this.serverName;
+    }
+
+    
 }

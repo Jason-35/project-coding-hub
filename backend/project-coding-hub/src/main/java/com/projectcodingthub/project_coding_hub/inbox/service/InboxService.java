@@ -1,9 +1,12 @@
 package com.projectcodingthub.project_coding_hub.inbox.service;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.projectcodingthub.project_coding_hub.inbox.dto.ServerRequestDTO;
 import com.projectcodingthub.project_coding_hub.inbox.model.Inbox;
 import com.projectcodingthub.project_coding_hub.inbox.repository.InboxRepository;
 import com.projectcodingthub.project_coding_hub.server.model.Server;
@@ -38,9 +41,16 @@ public class InboxService {
         return server;
     }
 
-    public Inbox saveInbox(User server_owner, User sender, boolean b) {
-        // TODO Auto-generated method stub
-        Inbox inbox = new Inbox(server_owner, sender, b);
+    public Inbox saveInbox(User server_owner, User sender, Server server, boolean b) {
+        Inbox inbox = new Inbox(sender, server_owner, server.getId(), server.getName(), b);
         return inboxRepository.save(inbox);
+    }
+
+    public List<Inbox> getAllInboxByUser(Integer userId){
+        return inboxRepository.getAllInboxByRecipient(userId).get();
+    }
+
+    public List<ServerRequestDTO> ListInboxToListServerRequestDTO(List<Inbox> listOfInbox) {
+        return listOfInbox.stream().map(inbox -> new ServerRequestDTO(inbox.getSenderName(), inbox.getServerName(), "Friday 1:42 pm")).collect(Collectors.toList());
     }
 }
