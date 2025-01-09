@@ -17,6 +17,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -46,6 +47,10 @@ public class User implements UserDetails {
 
     @OneToMany(mappedBy = "sender")
     private Set<Inbox> sender = new HashSet<>();
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "members")
+    private Set<Server> joinedServers = new HashSet<>(); 
 
     @SuppressWarnings("unused")
     private User(){}
@@ -77,6 +82,11 @@ public class User implements UserDetails {
     public String getEmail() {
         return this.email;
     }
+
+    public Set<Server> getJoinedServers() {
+        return this.joinedServers;
+    }
+    
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

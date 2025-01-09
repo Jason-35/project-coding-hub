@@ -1,6 +1,7 @@
 package com.projectcodingthub.project_coding_hub.server.model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -20,7 +21,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -50,6 +53,14 @@ public class Server {
     private boolean status;
 
     private String[] tags;
+
+    @ManyToMany
+    @JoinTable(
+        name = "server_members",
+        joinColumns = @JoinColumn(name="server_id"),
+        inverseJoinColumns =  @JoinColumn(name="user_id")
+    )
+    private Set<User> members = new HashSet<>();
 
     @SuppressWarnings("unused")
     private Server() {}
@@ -101,6 +112,14 @@ public class Server {
 
     public String[] getTags() {
         return this.tags;
+    }
+
+    public Set<User> getMembers() {
+        return this.members;
+    }
+
+    public void joinServer(User user) {
+        this.members.add(user);
     }
     
 }

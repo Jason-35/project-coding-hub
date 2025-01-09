@@ -23,5 +23,9 @@ public class ServerService {
     public List<Server> getAllServers() {
         return serverRepository.findAll();
     }
+
+    public void saveServer(Server server) {
+        serverRepository.save(server);
+    }
     
 }
