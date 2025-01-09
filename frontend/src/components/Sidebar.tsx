@@ -22,9 +22,15 @@ function Sidebar() {
     }
 
     type InboxCardType = {
+        senderId: number,
         sender: string,
         project: string,
-        date: string
+        projectId: string,
+        date: string,
+        mailType: string,
+        senderName: string,
+        serverName: string,
+        response: string
     }
 
     const navigate = useNavigate()
@@ -53,16 +59,17 @@ function Sidebar() {
 
     const webSocketClient = useWebSocket()
     useEffect(() => {
+        const userId = getUserInfo()?.id
         if(webSocketClient) {
-            const userId = getUserInfo()?.id
             webSocketClient.subscribe(`/topic/notification/${userId}`, (message) => {
+                console.log(message.body)
                 let newMail: InboxCardType = JSON.parse(message.body) 
                 setMails((prev) => [...prev, newMail]);
                 setUnread((prev) => prev += 1)
-                console.log("from the socket: " , mails.length)
+                // console.log("from the socket: " , mails.length)
             })
         }
-        return () => webSocketClient?.unsubscribe("/topic/notification/abc");
+        return () => webSocketClient?.unsubscribe(`/topic/notification/${userId}`);
     }, [webSocketClient])
 
     return (

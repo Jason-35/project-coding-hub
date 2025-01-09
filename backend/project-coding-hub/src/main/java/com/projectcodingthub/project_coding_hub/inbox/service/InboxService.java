@@ -51,6 +51,6 @@ public class InboxService {
     }
 
     public List<ServerRequestDTO> ListInboxToListServerRequestDTO(List<Inbox> listOfInbox) {
-        return listOfInbox.stream().map(inbox -> new ServerRequestDTO(inbox.getSenderName(), inbox.getServerName(), "Friday 1:42 pm")).collect(Collectors.toList());
+        return listOfInbox.stream().map(inbox -> new ServerRequestDTO(inbox.getSenderName(), inbox.getServerName(), "Friday 1:42 pm", inbox.getId(), inbox.getServerUUID())).collect(Collectors.toList());
     }
 }

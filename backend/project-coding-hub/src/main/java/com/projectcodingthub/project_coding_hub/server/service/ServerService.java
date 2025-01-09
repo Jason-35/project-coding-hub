@@ -1,6 +1,7 @@
 package com.projectcodingthub.project_coding_hub.server.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,10 @@ public class ServerService {
 
     public void saveServer(Server server) {
         serverRepository.save(server);
+    }
+
+    public Server getServerByUUID(UUID serverId) {
+        return serverRepository.findById(serverId).get();
     }
     
 }

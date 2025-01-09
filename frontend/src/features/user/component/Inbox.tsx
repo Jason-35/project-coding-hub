@@ -2,9 +2,15 @@ import { XIcon } from "lucide-react"
 import InboxCard from "./InboxCard"
 
 type InboxCardType = {
+    senderId: number,
     sender: string,
     project: string,
-    date: string
+    projectId: string,
+    date: string,
+    mailType: string,
+    senderName: string,
+    serverName: string,
+    response: string
 }
 
 function Inbox({setShowInbox, mails} : {setShowInbox: React.Dispatch<React.SetStateAction<boolean>>, mails: InboxCardType[]}) {
@@ -16,7 +22,7 @@ function Inbox({setShowInbox, mails} : {setShowInbox: React.Dispatch<React.SetSt
         </div>
         <div className="overflow-y-scroll flex-1">
             {mails.map((mail, index) => (
-                <InboxCard key={index} sender={mail.sender} project={mail.project} date={mail.date}/>
+                <InboxCard key={index} mail={mail}/>
             ))}
         </div>
     </div>

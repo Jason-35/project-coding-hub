@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.projectcodingthub.project_coding_hub.server.dto.JoinRequestDTO;
 import com.projectcodingthub.project_coding_hub.server.model.Server;
 import com.projectcodingthub.project_coding_hub.server.repository.ServerRepository;
 import com.projectcodingthub.project_coding_hub.server.service.ServerService;
@@ -48,6 +49,17 @@ public class ServerController {
         test_server.joinServer(user);
         this.serverService.saveServer(test_server); 
         return "this should work in database";
+    }
+
+    @PostMapping("/join")
+    public String userJoinsServer(@RequestBody JoinRequestDTO joinRequestDTO) {
+        System.out.println(joinRequestDTO.getUserId());
+        System.out.println(joinRequestDTO.getServerId());
+        User user = this.userServerService.getUser(joinRequestDTO.getUserId());
+        Server server = this.serverService.getServerByUUID(joinRequestDTO.getServerId());
+        server.joinServer(user);
+        this.serverService.saveServer(server);
+        return "200 ok";
     }
 
 
