@@ -32,5 +32,9 @@ public class ServerService {
     public Server getServerByUUID(UUID serverId) {
         return serverRepository.findById(serverId).get();
     }
+
+    public List<Server> getMemberOfServers(Integer userId) {
+        return serverRepository.findMemberOfServers(userId).get();
+    }
     
 }

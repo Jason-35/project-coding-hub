@@ -39,22 +39,14 @@ public class ServerController {
 
     @GetMapping("get/{userId}")
     public ResponseEntity<List<Server>> getUserServer(@PathVariable Integer userId) {
-        return ResponseEntity.ok(serverService.getUserServers(userId));
-    }
-
-    @GetMapping("testing")
-    public String testMember(){
-        User user = this.userServerService.getUser(2);
-        Server test_server = this.serverService.getAllServers().get(0);
-        test_server.joinServer(user);
-        this.serverService.saveServer(test_server); 
-        return "this should work in database";
+        List<Server> ownedServer = serverService.getUserServers(userId);
+        List<Server> memberServer = serverService.getMemberOfServers(userId);
+        ownedServer.addAll(memberServer);
+        return ResponseEntity.ok(ownedServer);
     }
 
     @PostMapping("/join")
     public String userJoinsServer(@RequestBody JoinRequestDTO joinRequestDTO) {
-        System.out.println(joinRequestDTO.getUserId());
-        System.out.println(joinRequestDTO.getServerId());
         User user = this.userServerService.getUser(joinRequestDTO.getUserId());
         Server server = this.serverService.getServerByUUID(joinRequestDTO.getServerId());
         server.joinServer(user);
