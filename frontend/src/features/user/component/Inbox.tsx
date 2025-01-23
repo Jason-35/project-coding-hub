@@ -15,7 +15,7 @@ type InboxCardType = {
 
 function Inbox({setShowInbox, mails} : {setShowInbox: React.Dispatch<React.SetStateAction<boolean>>, mails: InboxCardType[]}) {
     return (
-    <div className="border-2 border-black w-full h-full rounded-lg p-4 flex flex-col">
+    <div className="border-2 border-black w-full h-full rounded-lg p-4 flex flex-col bg-white">
         <div className="flex justify-between items-center px-4 mb-4">
             <span className="text-[24px]">Inbox</span>
             <span className="hover:cursor-pointer" onClick={() => setShowInbox(false)}><XIcon /></span>
