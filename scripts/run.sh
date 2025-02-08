@@ -3,7 +3,17 @@
 
 FRONTEND="../frontend"
 BACKEND="../backend/project-coding-hub"
+PORT="8080"
 
+PID=$(lsof -t -i :$PORT)
+
+if [ -n "$PID" ]; then
+    echo "Port $PORT is in use by process ID $PID. Killing it..."
+    kill -9 $PID
+    echo "Process $PID has been terminated."
+else
+    echo "Port $PORT is not in use."
+fi
 
 # move to frontend dir
 cd "$FRONTEND" || {
@@ -24,5 +34,13 @@ echo "Starting backend"
 mvn spring-boot:run & SPR_PID=$!
 
 wait "$NPM_PID" "$SPR_PID"
+
+if [ -n "$PID" ]; then
+    echo "Port $PORT is in use by process ID $PID. Killing it..."
+    kill -9 $PID
+    echo "Process $PID has been terminated."
+else
+    echo "Port $PORT is not in use."
+fi
 
 

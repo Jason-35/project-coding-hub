@@ -3,10 +3,8 @@ package com.projectcodingthub.project_coding_hub.inbox.model;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.projectcodingthub.project_coding_hub.server.model.Server;
 import com.projectcodingthub.project_coding_hub.user.model.User;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

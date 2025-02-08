@@ -9,6 +9,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.projectcodingthub.project_coding_hub.channel.model.Channel;
 import com.projectcodingthub.project_coding_hub.user.model.User;
 
 import io.micrometer.common.lang.Nullable;
@@ -25,6 +26,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -61,6 +63,9 @@ public class Server {
         inverseJoinColumns =  @JoinColumn(name="user_id")
     )
     private Set<User> members = new HashSet<>();
+
+    @OneToMany(mappedBy = "server")
+    private Set<Channel> channels = new HashSet<>();
 
     @SuppressWarnings("unused")
     private Server() {}
