@@ -7,20 +7,13 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.stereotype.Controller;
 
-import com.projectcodingthub.project_coding_hub.inbox.dto.ServerRequestDTO;
-import com.projectcodingthub.project_coding_hub.inbox.dto.UserDTO;
-import com.projectcodingthub.project_coding_hub.inbox.service.InboxService;
-import com.projectcodingthub.project_coding_hub.server.model.Server;
-import com.projectcodingthub.project_coding_hub.user.model.User;
-
 @Controller
 public class WsTextChannelController {
     @Autowired
     private SimpMessageSendingOperations template;
 
     @MessageMapping("/create/channel/{serverId}")
-    public void createchannel(@DestinationVariable String serverId) throws Exception {
-        System.out.println("I have recieved it!");
-        template.convertAndSend("/topic/create/channel/" + serverId, "sent back");
+    public void createchannel(@DestinationVariable String serverId, @Payload String channelName) throws Exception {
+        template.convertAndSend("/topic/create/channel/" + serverId, channelName);
     }
 }

@@ -5,17 +5,15 @@ import CreateChannel from "./CreateChannel"
 import { useWebSocket } from "../../ws/Ws"
 function TextChannel({serverName} : {serverName: string}) {
 
-    const channels = ["Welcome", "Getting Started", "General", "Discussion", "Task"]
+    const [channels, setChannels] = useState(["Welcome", "Getting Started", "General", "Discussion", "Task"])
 
     const webSocketClient = useWebSocket()
     const {serverId} = useParams()
-    console.log(serverId)
 
     useEffect(() => {
         if(webSocketClient) {
             webSocketClient.subscribe(`/topic/create/channel/${serverId}`, (message) => {
-                console.log(message.body)
-                console.log("RECIEVED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                setChannels((prevChannels) => [...prevChannels, message.body]);
             })
         }
         return () => webSocketClient?.unsubscribe(`/topic/create/channel/${serverId}`);

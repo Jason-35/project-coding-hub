@@ -16,7 +16,7 @@ function CreateChannel({show, setShow}:{show: boolean, setShow: React.Dispatch<R
     const webSocketClient = useWebSocket()
     
 
-    const { register, handleSubmit, formState: { errors }, control } = useForm<ChannelFormValue>({
+    const { register, handleSubmit, reset, formState: { errors }, control } = useForm<ChannelFormValue>({
         defaultValues: {
             channelType: "text",
             channelName: "",
@@ -31,6 +31,7 @@ function CreateChannel({show, setShow}:{show: boolean, setShow: React.Dispatch<R
               Authorization: `Bearer ${token}`
             }
         };
+        // redundant and need to keep only one!
         axios.post("http://localhost:8080/channel/create", 
         {
             "channelName" : data.channelName,
@@ -40,8 +41,14 @@ function CreateChannel({show, setShow}:{show: boolean, setShow: React.Dispatch<R
         config)
 
         if (webSocketClient) {
-            webSocketClient.send(`/app/create/channel/${serverId}`, {}, JSON.stringify({"boing": "doing"}))
+            console.log("sending!")
+            webSocketClient.send(`/app/create/channel/${serverId}`, {}, data.channelName)
+            setShow(false)
         }
+
+        reset()
+        
+
     }
 
     return (
@@ -87,7 +94,7 @@ function CreateChannel({show, setShow}:{show: boolean, setShow: React.Dispatch<R
                     </div>
                     <div className="flex h-1/4 p-4">
                         <div className="w-full h-full flex justify-between gap-4">
-                            <button className="border-2 border-black flex-0 p-2 rounded-md bg-white" type="button" >Cancel</button>
+                            <button className="border-2 border-black flex-0 p-2 rounded-md bg-white" type="button" onClick={() => setShow(false)}>Cancel</button>
                             <button className="border-2 border-black flex-0 p-2 rounded-md bg-white">Create Channel</button>
                         </div>
                     </div>
