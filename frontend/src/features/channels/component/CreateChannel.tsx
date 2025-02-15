@@ -3,6 +3,7 @@ import { X } from "lucide-react"
 import { Controller, useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { getJwtToken } from "../../auth/util/util";
+import { useWebSocket } from "../../ws/Ws";
 
 function CreateChannel({show, setShow}:{show: boolean, setShow: React.Dispatch<React.SetStateAction<boolean>>}) {
     type ChannelFormValue = {
@@ -12,6 +13,8 @@ function CreateChannel({show, setShow}:{show: boolean, setShow: React.Dispatch<R
     }
 
     const {serverId} = useParams()
+    const webSocketClient = useWebSocket()
+    
 
     const { register, handleSubmit, formState: { errors }, control } = useForm<ChannelFormValue>({
         defaultValues: {
@@ -35,6 +38,10 @@ function CreateChannel({show, setShow}:{show: boolean, setShow: React.Dispatch<R
             "serverId": data.serverId
         },
         config)
+
+        if (webSocketClient) {
+            webSocketClient.send(`/app/create/channel/${serverId}`, {}, JSON.stringify({"boing": "doing"}))
+        }
     }
 
     return (

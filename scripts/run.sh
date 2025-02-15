@@ -5,7 +5,7 @@ FRONTEND="../frontend"
 BACKEND="../backend/project-coding-hub"
 PORT="8080"
 
-PID=$(lsof -t -i :$PORT)
+PID=$(lsof -t -i :$PORT -sTCP:LISTEN)
 
 if [ -n "$PID" ]; then
     echo "Port $PORT is in use by process ID $PID. Killing it..."
