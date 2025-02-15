@@ -1,6 +1,7 @@
 package com.projectcodingthub.project_coding_hub.channel.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,15 @@ public class tempController {
         Server server = serverService.getServerByUUID(channelFormDTO.getServerId());
         Channel ch = new Channel(channelFormDTO.getChannelName(), channelFormDTO.getChannelType(), server);
         channelRepository.save(ch);
+    }
+
+    @GetMapping("/channel/getAll/{serverId}")
+    public void getAllChannelFromServer(@PathVariable UUID serverId){
+        List<Channel> chs = channelRepository.getAllChannelByServer(serverId).get();
+
+        for (Channel ch : chs) {
+            System.out.println(ch.getChannelName());
+        }
     }
 
     
