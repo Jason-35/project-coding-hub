@@ -6,8 +6,7 @@ import CreateChannel from "../../channels/component/CreateChannel"
 function ServerPage() {
   return (
     <div className='flex-1 flex'>
-        <CreateChannel />        
-        <TextChannel />
+        <TextChannel serverName={"bob channel"}/>
         <div className="flex-1 border-l-2 border-r-2"><Outlet /></div>
         <Members />
     </div>
