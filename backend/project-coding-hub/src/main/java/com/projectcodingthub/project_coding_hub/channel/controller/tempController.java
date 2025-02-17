@@ -34,14 +34,14 @@ public class tempController {
         channelRepository.save(ch);
     }
 
-    @GetMapping("/channel/getAll/{serverId}")
-    public void getAllChannelFromServer(@PathVariable UUID serverId){
-        List<Channel> chs = channelRepository.getAllChannelByServer(serverId).get();
+    // @GetMapping("/channel/getAll/{serverId}")
+    // public void getAllChannelFromServer(@PathVariable UUID serverId){
+    //     List<Channel> chs = channelRepository.getAllChannelByServer(serverId).get();
 
-        for (Channel ch : chs) {
-            System.out.println(ch.getChannelName());
-        }
-    }
+    //     for (Channel ch : chs) {
+    //         System.out.println(ch.getChannelName());
+    //     }
+    // }
 
     
 }
