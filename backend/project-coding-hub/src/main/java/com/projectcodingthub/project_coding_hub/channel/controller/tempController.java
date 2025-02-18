@@ -1,5 +1,6 @@
 package com.projectcodingthub.project_coding_hub.channel.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -34,14 +35,15 @@ public class tempController {
         channelRepository.save(ch);
     }
 
-    // @GetMapping("/channel/getAll/{serverId}")
-    // public void getAllChannelFromServer(@PathVariable UUID serverId){
-    //     List<Channel> chs = channelRepository.getAllChannelByServer(serverId).get();
+    @GetMapping("/channel/getAll/{serverId}")
+    public List<String> getAllChannelFromServer(@PathVariable String serverId){
+        UUID serverUUID = UUID.fromString(serverId);
+        List<Channel> channels = channelRepository.findAllByServerId(serverUUID);
+        List<String> serverChannels = new ArrayList<>();
+        channels.forEach(channel -> serverChannels.add(channel.getChannelName()));
 
-    //     for (Channel ch : chs) {
-    //         System.out.println(ch.getChannelName());
-    //     }
-    // }
+        return serverChannels;
+    }
 
     
 }

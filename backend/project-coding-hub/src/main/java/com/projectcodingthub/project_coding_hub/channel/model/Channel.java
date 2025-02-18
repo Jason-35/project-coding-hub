@@ -32,12 +32,14 @@ public class Channel {
     @JsonIgnore
     private Server server;
 
+    @SuppressWarnings("unused")
+    private Channel() {}
+
     public Channel(String channelName, String channelType, Server server){
         this.channelName = channelName;
         this.channelType = channelType;
         this.server = server;
     }
-
 
     public Integer getId(){
         return this.id;

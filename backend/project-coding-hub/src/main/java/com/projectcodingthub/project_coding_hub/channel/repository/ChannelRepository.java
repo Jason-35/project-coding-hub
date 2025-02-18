@@ -13,10 +13,12 @@ import com.projectcodingthub.project_coding_hub.channel.model.Channel;
 
 import jakarta.transaction.Transactional;
 
+
 @Repository
 @Transactional
 public interface ChannelRepository extends JpaRepository<Channel, Integer>{
     
     @Query("SELECT ch FROM Channel ch WHERE ch.server.id = :serverId")
-    Optional<List<Channel>> findAllByServerId(@Param("serverId") UUID serverId);
+    List<Channel> findAllByServerId(@Param("serverId") UUID serverId);
+    
 }
