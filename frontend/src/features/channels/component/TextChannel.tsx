@@ -3,14 +3,20 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import CreateChannel from "./CreateChannel"
 import { useWebSocket } from "../../ws/Ws"
+import { getServerChannels } from "../../../httpRequest/channelRequest"
 function TextChannel({serverName} : {serverName: string}) {
-
-    const [channels, setChannels] = useState(["Welcome", "Getting Started", "General", "Discussion", "Task"])
+    
+    const [channels, setChannels] = useState(["General"])
 
     const webSocketClient = useWebSocket()
     const {serverId} = useParams()
 
     useEffect(() => {
+        const fetchChannel = async() => {
+            const serverChannels = await getServerChannels(serverId!)
+            setChannels(serverChannels)
+        }
+        fetchChannel()
         if(webSocketClient) {
             webSocketClient.subscribe(`/topic/create/channel/${serverId}`, (message) => {
                 setChannels((prevChannels) => [...prevChannels, message.body]);
