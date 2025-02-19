@@ -3,16 +3,26 @@
 
 FRONTEND="../frontend"
 BACKEND="../backend/project-coding-hub"
-PORT="8080"
+BPORT="8080"
+BPID=$(lsof -t -i :$BPORT -sTCP:LISTEN)
 
-PID=$(lsof -t -i :$PORT -sTCP:LISTEN)
-
-if [ -n "$PID" ]; then
-    echo "Port $PORT is in use by process ID $PID. Killing it..."
-    kill -9 $PID
-    echo "Process $PID has been terminated."
+if [ -n "$BPID" ]; then
+    echo "Port $BPORT is in use by process ID $BPID. Killing it..."
+    kill -9 $BPID
+    echo "Process $BPID has been terminated."
 else
-    echo "Port $PORT is not in use."
+    echo "Port $BPORT is not in use."
+fi
+
+FPORT="5173"
+FPID=$(lsof -t -i :$FPORT -sTCP:LISTEN)
+
+if [ -n "$FPID" ]; then
+    echo "Port $FPORT is in use by process ID $FPID. Killing it..."
+    kill -9 $FPID
+    echo "Process $FPID has been terminated."
+else
+    echo "Port $FPORT is not in use."
 fi
 
 # move to frontend dir
@@ -34,13 +44,4 @@ echo "Starting backend"
 mvn spring-boot:run & SPR_PID=$!
 
 wait "$NPM_PID" "$SPR_PID"
-
-if [ -n "$PID" ]; then
-    echo "Port $PORT is in use by process ID $PID. Killing it..."
-    kill -9 $PID
-    echo "Process $PID has been terminated."
-else
-    echo "Port $PORT is not in use."
-fi
-
 

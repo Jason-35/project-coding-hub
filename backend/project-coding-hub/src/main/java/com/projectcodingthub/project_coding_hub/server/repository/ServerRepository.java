@@ -29,10 +29,9 @@ public interface ServerRepository extends JpaRepository<Server, UUID>{
     @Query("SELECT s FROM Server s WHERE s.id = :id")
     Optional<Server> findServerByServerId(UUID id);
 
-      // JPQL query to find students by course ID
-    //   @Query("SELECT s FROM Student s JOIN s.courses c WHERE c.id = :courseId")
-    //   List<Student> findStudentsByCourseId(@Param("courseId") Long courseId);
-
     @Query("SELECT s FROM Server s JOIN s.members m WHERE m.id = :id")
     Optional<List<Server>> findMemberOfServers(Integer id);
+
+    @Query("SELECT s.name FROM Server s WHERE s.id = :id")
+    Optional<String> findServerName(UUID id);
 }

@@ -37,6 +37,11 @@ public class ServerController {
         return ResponseEntity.ok(serverService.getAllServers());
     }
 
+    @GetMapping("get/{serverId}/name")
+    public ResponseEntity<String> getServerTitle(@PathVariable UUID serverId) {
+        return ResponseEntity.ok(serverService.getServerName(serverId));
+    }
+
     @GetMapping("get/{userId}")
     public ResponseEntity<List<Server>> getUserServer(@PathVariable Integer userId) {
         List<Server> ownedServer = serverService.getUserServers(userId);

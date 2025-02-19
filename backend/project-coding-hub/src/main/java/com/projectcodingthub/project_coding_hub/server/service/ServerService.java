@@ -36,5 +36,9 @@ public class ServerService {
     public List<Server> getMemberOfServers(Integer userId) {
         return serverRepository.findMemberOfServers(userId).get();
     }
+
+    public String getServerName(UUID id) {
+        return serverRepository.findServerName(id).get();
+    }
     
 }
