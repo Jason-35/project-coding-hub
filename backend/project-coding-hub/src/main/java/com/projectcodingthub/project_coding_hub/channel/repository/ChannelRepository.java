@@ -16,7 +16,7 @@ import jakarta.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface ChannelRepository extends JpaRepository<Channel, Integer>{
+public interface ChannelRepository extends JpaRepository<Channel, UUID>{
     
     @Query("SELECT ch FROM Channel ch WHERE ch.server.id = :serverId")
     List<Channel> findAllByServerId(@Param("serverId") UUID serverId);

@@ -1,5 +1,7 @@
 package com.projectcodingthub.project_coding_hub.channel.model;
 
+import java.util.UUID;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projectcodingthub.project_coding_hub.server.model.Server;
 
@@ -19,7 +21,7 @@ public class Channel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false)
-    private Integer id;
+    private UUID id;
 
     @Column(nullable = false)
     private String channelName;
@@ -41,7 +43,7 @@ public class Channel {
         this.server = server;
     }
 
-    public Integer getId(){
+    public UUID getId(){
         return this.id;
     }
 
@@ -57,7 +59,7 @@ public class Channel {
         return this.server;
     }
 
-    public void setId(Integer id){
+    public void setId(UUID id){
         this.id = id;
     }
 

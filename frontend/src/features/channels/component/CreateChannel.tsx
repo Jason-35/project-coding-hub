@@ -32,17 +32,23 @@ function CreateChannel({show, setShow}:{show: boolean, setShow: React.Dispatch<R
             }
         };
         // redundant and need to keep only one!
-        axios.post("http://localhost:8080/channel/create", 
-        {
+        // axios.post("http://localhost:8080/channel/create", 
+        // {
+        //     "channelName" : data.channelName,
+        //     "channelType" : data.channelType,
+        //     "serverId": data.serverId
+        // },
+        // config)
+
+        let body = {
             "channelName" : data.channelName,
             "channelType" : data.channelType,
             "serverId": data.serverId
-        },
-        config)
+        }
 
         if (webSocketClient) {
             console.log("sending!")
-            webSocketClient.send(`/app/create/channel/${serverId}`, {}, data.channelName)
+            webSocketClient.send(`/app/create/channel/${serverId}`, {}, JSON.stringify(body))
             setShow(false)
         }
 

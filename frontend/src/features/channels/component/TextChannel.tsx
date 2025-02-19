@@ -5,8 +5,13 @@ import CreateChannel from "./CreateChannel"
 import { useWebSocket } from "../../ws/Ws"
 import { getServerChannels } from "../../../httpRequest/channelRequest"
 function TextChannel({serverName} : {serverName: string}) {
+
+    type Channel = {
+        channelId : string,
+        channelName : string
+    }
     
-    const [channels, setChannels] = useState<string[]>([])
+    const [channels, setChannels] = useState<Channel[]>([])
 
     const webSocketClient = useWebSocket()
     const {serverId} = useParams()
@@ -20,7 +25,7 @@ function TextChannel({serverName} : {serverName: string}) {
         fetchChannel()
         if(webSocketClient) {
             webSocketClient.subscribe(`/topic/create/channel/${serverId}`, (message) => {
-                setChannels((prevChannels) => [...prevChannels, message.body]);
+                setChannels((prevChannels) => [...prevChannels, JSON.parse(message.body)]);
             })
         }
         return () => webSocketClient?.unsubscribe(`/topic/create/channel/${serverId}`);
@@ -55,8 +60,8 @@ function TextChannel({serverName} : {serverName: string}) {
                 <div className="overflow-scroll flex flex-col gap-2 px-2">
                   {channels.map((ch, index) => (
                       <div key={index} className="border-2 p-2 rounded-md hover:bg-gray-400 hover:cursor-pointer flex justify-between"
-                      onClick={() => switchChannel(ch)}>
-                        {ch}
+                      onClick={() => switchChannel(ch.channelId)}>
+                        {ch.channelName}
                         <Settings />
                       </div>      
                   ))}

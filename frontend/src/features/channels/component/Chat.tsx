@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-
+import { TriangleIcon } from "lucide-react"
 function Chat() {
     const param = useParams()
 
@@ -22,8 +22,11 @@ function Chat() {
                 </div>
             </div>
         </div>
-        <div className='h-14'>
-            <input className='border-t-4 w-full h-full pl-4 whitespace-nowrap' placeholder='message' />
+        <div className='h-14 flex border-t-4'>
+            <input className='w-full h-full pl-4 whitespace-nowrap' placeholder='message' />
+            <div className="p-3 rotate-90">
+                <TriangleIcon />
+            </div>
         </div>
     </div>
   )
