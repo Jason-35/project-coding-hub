@@ -1,8 +1,11 @@
 package com.projectcodingthub.project_coding_hub.channel.model;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.projectcodingthub.project_coding_hub.message.model.Message;
 import com.projectcodingthub.project_coding_hub.server.model.Server;
 
 import jakarta.persistence.Column;
@@ -12,6 +15,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,6 +37,10 @@ public class Channel {
     @JoinColumn(name = "server_id", referencedColumnName = "id")
     @JsonIgnore
     private Server server;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "channel")
+    private Set<Message> messages = new HashSet<>();
 
     @SuppressWarnings("unused")
     private Channel() {}

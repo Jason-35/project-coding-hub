@@ -1,7 +1,40 @@
 import { useParams } from "react-router-dom"
 import { TriangleIcon } from "lucide-react"
+import { useForm } from "react-hook-form"
+import { useWebSocket } from "../../ws/Ws"
+import { getUserInfo } from "../../auth/util/util"
+import { useEffect } from "react"
 function Chat() {
+    type ChatForm = {
+        message: string,
+    }
+
     const param = useParams()
+    const webSocketClient = useWebSocket()
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<ChatForm>()
+    useEffect(() => {
+        if(webSocketClient) {
+            webSocketClient.subscribe(`/topic/channel/${param.channelId}`, (message) => {
+                console.log(message.body)
+            })
+        }
+        return () => webSocketClient?.unsubscribe(`/topic/channel/${param.channelId}`);
+    }, [webSocketClient])
+
+    const formSubmit = (data: ChatForm) => {
+        if (webSocketClient) {
+            console.log("sending!")
+            const usr = getUserInfo()
+            const body = {
+                message: data.message,
+                channelId: param.channelId,
+                userId: usr!.id
+            }
+            webSocketClient.send(`/app/message/channel/${param.channelId}`, {}, JSON.stringify(body))
+        }
+        reset()        
+    }
+    
 
     return (
     <div className='flex flex-col h-screen'>
@@ -22,12 +55,12 @@ function Chat() {
                 </div>
             </div>
         </div>
-        <div className='h-14 flex border-t-4'>
-            <input className='w-full h-full pl-4 whitespace-nowrap' placeholder='message' />
+        <form className='h-14 flex border-t-4' onSubmit={handleSubmit(formSubmit)}>
+            <input {...register("message")} className='w-full h-full pl-4 whitespace-nowrap' placeholder='message' />
             <div className="p-3 rotate-90">
-                <TriangleIcon />
+                <TriangleIcon className="hover:cursor-pointer" onClick={handleSubmit(formSubmit)} />
             </div>
-        </div>
+        </form>
     </div>
   )
 }

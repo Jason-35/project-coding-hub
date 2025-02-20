@@ -15,7 +15,7 @@ import com.projectcodingthub.project_coding_hub.server.model.Server;
 import com.projectcodingthub.project_coding_hub.server.service.ServerService;
 
 @Controller
-public class WsTextChannelController {
+public class WsChannelController {
 
     private final ChannelRepository channelRepository;
     private final ServerService serverService;
@@ -23,13 +23,13 @@ public class WsTextChannelController {
     @Autowired
     private SimpMessageSendingOperations template;
 
-    WsTextChannelController(ChannelRepository channelRepository, ServerService serverService){
+    WsChannelController(ChannelRepository channelRepository, ServerService serverService){
         this.channelRepository = channelRepository;
         this.serverService = serverService;
     }
 
     @MessageMapping("/create/channel/{serverId}")
-    public void createchannel(@DestinationVariable String serverId, @Payload ChannelFormDTO body) throws Exception {
+    public void createChannel(@DestinationVariable String serverId, @Payload ChannelFormDTO body) throws Exception {
         Server server = serverService.getServerByUUID(body.getServerId());
         Channel ch = new Channel(body.getChannelName(), body.getChannelType(), server);
         channelRepository.save(ch);

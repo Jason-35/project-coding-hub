@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.projectcodingthub.project_coding_hub.inbox.model.Inbox;
+import com.projectcodingthub.project_coding_hub.message.model.Message;
 import com.projectcodingthub.project_coding_hub.server.model.Server;
 
 import jakarta.persistence.Column;
@@ -18,6 +19,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -51,6 +53,10 @@ public class User implements UserDetails {
     @JsonIgnore
     @ManyToMany(mappedBy = "members")
     private Set<Server> joinedServers = new HashSet<>(); 
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<Message> messages = new HashSet<>();
 
     @SuppressWarnings("unused")
     private User(){}

@@ -19,12 +19,12 @@ import com.projectcodingthub.project_coding_hub.server.model.Server;
 import com.projectcodingthub.project_coding_hub.server.service.ServerService;
 
 @RestController
-public class tempController {
+public class ChannelController {
 
     private final ChannelRepository channelRepository;
     private final ServerService serverService;
 
-    tempController(ChannelRepository channelRepository, ServerService serverService){
+    ChannelController(ChannelRepository channelRepository, ServerService serverService){
         this.channelRepository = channelRepository;
         this.serverService = serverService;
     }

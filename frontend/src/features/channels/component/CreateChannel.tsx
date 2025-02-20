@@ -25,21 +25,6 @@ function CreateChannel({show, setShow}:{show: boolean, setShow: React.Dispatch<R
     });
 
     const formSubmit = (data: ChannelFormValue) => {
-        const token = getJwtToken()
-        const config = {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-        };
-        // redundant and need to keep only one!
-        // axios.post("http://localhost:8080/channel/create", 
-        // {
-        //     "channelName" : data.channelName,
-        //     "channelType" : data.channelType,
-        //     "serverId": data.serverId
-        // },
-        // config)
-
         let body = {
             "channelName" : data.channelName,
             "channelType" : data.channelType,
@@ -54,7 +39,6 @@ function CreateChannel({show, setShow}:{show: boolean, setShow: React.Dispatch<R
 
         reset()
         
-
     }
 
     return (
