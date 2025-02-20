@@ -40,6 +40,10 @@ public class Message {
         this.user = user;
     }
 
+    public Integer getId() {
+        return this.id;
+    }
+
     public void setMessage(String message) {
         this.message = message;
     }

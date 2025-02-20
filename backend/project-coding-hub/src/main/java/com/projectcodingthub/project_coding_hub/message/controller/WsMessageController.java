@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import com.projectcodingthub.project_coding_hub.channel.model.Channel;
 import com.projectcodingthub.project_coding_hub.channel.repository.ChannelRepository;
 import com.projectcodingthub.project_coding_hub.message.dto.MessageDTO;
+import com.projectcodingthub.project_coding_hub.message.dto.MessageReturnDTO;
 import com.projectcodingthub.project_coding_hub.message.model.Message;
 import com.projectcodingthub.project_coding_hub.message.service.MessageService;
 import com.projectcodingthub.project_coding_hub.user.model.User;
@@ -44,9 +45,10 @@ public class WsMessageController {
         
         Message msg = new Message(message, ch, user);
 
-        messageService.saveMessage(msg);
-        
+        Message savedMsg = messageService.saveMessage(msg);
 
-        template.convertAndSend("/topic/channel/" + channelId, "hello chat");
+        MessageReturnDTO messageReturnDTO = new MessageReturnDTO(null, user.getUsername(), message, savedMsg.getId());
+        
+        template.convertAndSend("/topic/channel/" + channelId, messageReturnDTO);
     }
 }

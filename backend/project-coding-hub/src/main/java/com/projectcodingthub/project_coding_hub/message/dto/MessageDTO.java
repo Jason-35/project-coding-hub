@@ -5,9 +5,9 @@ public class MessageDTO {
     String channelId;
     int userId;
     
-    MessageDTO() {}
+    public MessageDTO() {}
 
-    MessageDTO(String message, String channelId, int userId) {
+    public MessageDTO(String message, String channelId, int userId) {
         this.message = message;
         this.channelId = channelId;
         this.userId = userId;
