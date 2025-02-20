@@ -32,9 +32,9 @@ public class Message {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    Message() {}
+    public Message() {}
 
-    Message(String message, Channel channel, User user) {
+    public Message(String message, Channel channel, User user) {
         this.message = message;
         this.channel = channel;
         this.user = user;
