@@ -5,31 +5,29 @@ import { useWebSocket } from '../features/ws/Ws'
 
 function DashboardPage() {
     const webSocketClient = useWebSocket()
-    const handleClick = () => {
-        // const token = getJwtToken()
-        // const config = {
-        //     headers: {
-        //       Authorization: `Bearer ${token}`
-        //     }
-        // };
-        // const userId = getUserInfo()?.id
-        // axios.get(`http://localhost:8080/server/testing`, config).then((res) => {
-        //     console.log(res.data)
-        // })
 
-        const userInfo = getUserInfo()
+    useEffect(() => {
+        console.log("even ruin?")
         if(webSocketClient) {
-            console.log("gogogo")
-            const userInfo = getUserInfo()
-            const payload = {
-                 senderId: userInfo?.id,
-                 recieverId: 2,
-                 serverName: "fawl",
-                 mailType: "response",
-                 response: "accept",
-            }
-            webSocketClient.send(`/app/request/response`, {}, JSON.stringify(payload))
+            webSocketClient.subscribe(`/topic/reciever`, (message) => {
+                console.log("REACH FOR ME")
+                console.log(message.body)
+            })
         }
+        return () => webSocketClient?.unsubscribe(`/topic/reciever`);
+    }, [webSocketClient])
+
+    const handleClick = () => {
+        // if(webSocketClient) {
+        //     webSocketClient.send(`/app/testing`, {}, "pewpew")
+        // }
+        const token = getJwtToken()
+    const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+    };
+        axios.get("http://localhost:8080/server/get/test", config)
     }
 
   return (

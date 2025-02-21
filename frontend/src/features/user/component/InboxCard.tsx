@@ -52,6 +52,9 @@ function InboxCard({mail} : Mail) {
                  response: response,
             }
             webSocketClient.send(`/app/request/response`, {}, JSON.stringify(payload))
+            if (response === "accept") {
+                webSocketClient.send(`/app/testing`, {}, "farq")
+            }
         }
     }
 

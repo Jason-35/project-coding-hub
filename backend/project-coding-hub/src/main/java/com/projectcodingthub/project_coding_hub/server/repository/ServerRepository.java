@@ -34,4 +34,7 @@ public interface ServerRepository extends JpaRepository<Server, UUID>{
 
     @Query("SELECT s.name FROM Server s WHERE s.id = :id")
     Optional<String> findServerName(UUID id);
+
+    @Query("SELECT s.members FROM Server s WHERE s.id = :serverId")
+    Optional<Set<User>> findAllUserOfServer(UUID serverId);
 }

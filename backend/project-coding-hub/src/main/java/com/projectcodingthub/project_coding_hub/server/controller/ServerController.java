@@ -1,11 +1,14 @@
 package com.projectcodingthub.project_coding_hub.server.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,6 +29,9 @@ public class ServerController {
 
     private final ServerService serverService;
     private final UserServerService userServerService;
+
+    @Autowired
+    private SimpMessageSendingOperations template;
 
     public ServerController(ServerService serverService, UserServerService userServerService) {
         this.serverService = serverService;
@@ -56,7 +62,19 @@ public class ServerController {
         Server server = this.serverService.getServerByUUID(joinRequestDTO.getServerId());
         server.joinServer(user);
         this.serverService.saveServer(server);
+        
+        template.convertAndSend("/topic/newMember/" + server.getId(), user.getUsername());
         return "200 ok";
+    }
+
+    @GetMapping("get/{serverId}/members")
+    public List<String> getServerMembers(@PathVariable UUID serverId) {
+        Set<User> members = this.serverService.getUsersFromServer(serverId);
+        List<String> membersName = new ArrayList<>();
+
+        members.forEach(member -> membersName.add(member.getUsername()));
+
+        return membersName;
     }
 
 

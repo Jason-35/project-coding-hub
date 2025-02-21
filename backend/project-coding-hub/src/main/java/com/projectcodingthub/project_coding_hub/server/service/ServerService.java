@@ -1,12 +1,14 @@
 package com.projectcodingthub.project_coding_hub.server.service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
 import com.projectcodingthub.project_coding_hub.server.model.Server;
 import com.projectcodingthub.project_coding_hub.server.repository.ServerRepository;
+import com.projectcodingthub.project_coding_hub.user.model.User;
 
 @Service
 public class ServerService {
@@ -39,6 +41,10 @@ public class ServerService {
 
     public String getServerName(UUID id) {
         return serverRepository.findServerName(id).get();
+    }
+
+    public Set<User> getUsersFromServer(UUID serverId) {
+        return serverRepository.findAllUserOfServer(serverId).get();
     }
     
 }
