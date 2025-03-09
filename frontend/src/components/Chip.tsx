@@ -22,7 +22,7 @@ function Chip({
         padding = "p-4"
     } : ChipProps) {
   return (
-    <div className={`${bg_color} ${text_color} ${font_size} ${border_color} ${border_size} ${margin} ${shape} text-center inline-block ${padding}`}>
+    <div className={`${bg_color} ${text_color} ${font_size} ${border_color} ${border_size} ${margin} ${shape} text-center inline-block ${padding} hover:cursor-pointer`}>
       {label}
     </div>
   )

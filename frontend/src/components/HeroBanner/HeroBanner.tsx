@@ -15,7 +15,7 @@ function HeroBanner() {
                     <span className="sm:text-2xl">Project Coding Hub is the right place to find the right project to build</span>
                 </div>
                 
-                    <Link to={"signup"} className="bg-green-300 w-full p-2 rounded-md sm:w-3/6">
+                    <Link to={"signup"} className="bg-orange-300 w-full p-2 rounded-md sm:w-3/6">
                         <button >Join Now</button>
                     </Link>
             </div>
