@@ -1,6 +1,13 @@
+import { Menu } from "lucide-react"
+
 function Logo() {
   return (
-    <div className="text-[36px] font-semibold  hover:cursor-pointer"><span className="text-orange-400 mr-[-0.4em]">Code</span> <span className="text-orange-400">Project</span> <span className="ml-[-0.4em]">Hub</span></div>
+    <div className="font-inter font-semibold text-2xl flex justify-between items-center p-4 sm:text-4xl">
+        <p className="hover:cursor-pointer">
+            Code <span className="text-orange-400">Project</span> Hub
+        </p>
+        <Menu className="sm:hidden" />
+    </div>
   )
 }
 

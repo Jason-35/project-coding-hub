@@ -1,32 +1,22 @@
-import { Link } from "react-router-dom"
-import Logo from "../components/Logo"
-import Chip from "../components/Chip"
+import Navbar from "../components/Navbar/Navbar"
 
+import { Link } from "react-router-dom"
+
+import Chip from "../components/Chip"
 import pair_programming from "../assets/pair_programming.svg"
 import code_typing from "../assets/code_typing.svg"
 import connect from "../assets/connecting_teams.svg"
 import community from "../assets/friends_online.svg"
+
 function LandingPage() {
     const genre: string[] = ["python", "java", "go", "javascript", "react", "vue", "angular", "rust", "ruby","c", "php", "postgres", "mongodb", "c#", "react", "springboot", "next.js", "c++", "Show More"]
 
     return (
     <div>
-        <div className="flex justify-around py-4 px-2 mb-52">
-            <Logo />
-            <nav className="flex list-none w-1/5 justify-around text-[20px] items-center py-4">
-                <li>Projects</li>
-                <li>About</li>
-                <li className="border-2 h-full border-orange-400"></li>
-                <li>
-                    <Link to={"signup"} className="hover:underline">Join</Link>
-                </li>
-                <li>
-                    <Link to={"login"} className="hover:underline text-orange-400">Sign In</Link>
-                </li>
-            </nav>
-        </div>
 
-        <div className="flex justify-around items-center mb-52">
+        <Navbar />        
+
+        {/* <div className="flex justify-around items-center mb-52">
             <div>
                 <div className="text-[68px] leading-snug mb-8">
                     NO MORE 
@@ -89,7 +79,7 @@ function LandingPage() {
 
         <div className="flex justify-around p-24 items-center bg-orange-300">
             <div className="text-[40px] leading-loose">
-                Go multiplayer
+                Have Fun!
                 <div className="text-[24px] leading-snug">
                     It's more fun coding with others
                     <br />
@@ -115,7 +105,7 @@ function LandingPage() {
                     Learn and advance together!
                 </div>
             </div>
-        </div>
+        </div> */}
     </div>
     )
 }

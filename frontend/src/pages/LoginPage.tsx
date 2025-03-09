@@ -33,7 +33,6 @@ function LoginPage() {
             navigate("/u/dashboard")
         }).catch((error) => {
             setLoginError(error.response.status)
-            console.log(error.response.status)
         })
     }
 
