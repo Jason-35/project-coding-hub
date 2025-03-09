@@ -1,4 +1,5 @@
 import Navbar from "../components/Navbar/Navbar"
+import HeroBanner from "../components/HeroBanner/HeroBanner"
 
 import { Link } from "react-router-dom"
 
@@ -14,9 +15,10 @@ function LandingPage() {
     return (
     <div>
 
-        <Navbar />        
+        <Navbar />  
+        <HeroBanner />      
 
-        {/* <div className="flex justify-around items-center mb-52">
+         {/* <div className="flex justify-around items-center mb-52">
             <div>
                 <div className="text-[68px] leading-snug mb-8">
                     NO MORE 
@@ -36,8 +38,8 @@ function LandingPage() {
             <div className="w-1/3">
                 <img src={pair_programming} alt="" />
             </div>
-        </div>
-
+        </div> */}
+{/*
         <br />
         
         <div className="flex justify-around h-60 bg-orange-300 items-center p-48">

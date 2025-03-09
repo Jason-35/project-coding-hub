@@ -1,0 +1,26 @@
+import pair_programming from "../../assets/pair_programming.svg"
+import { Link } from "react-router-dom"
+
+function HeroBanner() {
+    return (
+        <div className="flex flex-col items-center justify-center sm:flex-row-reverse sm:gap-48 sm:h-[calc(100vh-12vh)]">
+            <div className="aspect-square w-5/6 sm:w-1/2 sm:aspect-auto">
+                <img src={pair_programming} alt="" />
+            </div>
+            <div className="flex justify-center items-center text-center flex-col px-4 gap-16 sm:w-2/4">
+                <div className="sm:px-20">
+                    <span className="text-3xl font-semibold sm:text-6xl">Build with <span className="text-orange-400">Communities!</span></span>
+                    <br />
+                    <br />
+                    <span className="sm:text-2xl">Project Coding Hub is the right place to find the right project to build</span>
+                </div>
+                
+                    <Link to={"signup"} className="bg-green-300 w-full p-2 rounded-md sm:w-3/6">
+                        <button >Join Now</button>
+                    </Link>
+            </div>
+        </div>
+    )
+}
+
+export default HeroBanner
