@@ -1,33 +1,32 @@
 import { Link } from "react-router-dom"
+import { useState } from "react"
+
+import { Menu } from "lucide-react"
+import MobileMenu from "./MobileMenu"
+
 import Logo from "../../components/Logo"
 
 function Navbar() {
+    const [showMobileNav, setShowMobileNav] = useState<boolean>(false)
+    
     return (
-        // <div className="flex justify-around py-4 px-2 mb-52 border-2">
-        //     <Logo />
-        //     <nav className="flex list-none w-1/5 justify-around text-[20px] items-center py-4">
-        //         <li>Projects</li>
-        //         <li>About</li>
-        //         <li className="border-2 h-full border-orange-400"></li>
-        //         <li>
-        //             <Link to={"signup"} className="hover:underline">Join</Link>
-        //         </li>
-        //         <li>
-        //             <Link to={"login"} className="hover:underline text-orange-400">Sign In</Link>
-        //         </li>
-        //     </nav>
-        // </div>
-        <div className="">
+        <div className="p-4 flex items-center justify-between font-inter relative md:px-32">
             <Logo />
-            <nav className="">
-                <li>Projects</li>
-                <li>About</li>
-                <li className=""></li>
+            <Menu className="hover:cursor-pointer sm:hidden" onClick={() => setShowMobileNav(true)}/>
+            {showMobileNav && <MobileMenu setShowMobileNav={setShowMobileNav}/>}
+            <nav className="hidden list-none sm:flex sm:w-3/12 sm:justify-around text-2xl md:flex">
                 <li>
-                    <Link to={"signup"} className="hover:underline">Join</Link>
+                    <Link to={""} className="hover:underline">Project</Link>
                 </li>
                 <li>
-                    <Link to={"login"} className="hover:underline text-orange-400">Sign In</Link>
+                    <Link to={""} className="hover:underline">About</Link>
+                </li>
+                <li className="border-l-2 border-orange-400"></li>
+                <li>
+                    <Link to={"login"} className="hover:underline">Sign In</Link>
+                </li>
+                <li>
+                    <Link to={"signup"} className="hover:underline text-orange-400">Join</Link>
                 </li>
             </nav>
         </div>
