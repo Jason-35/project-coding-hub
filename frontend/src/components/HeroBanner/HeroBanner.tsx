@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 function HeroBanner() {
     return (
-        <div className="flex flex-col items-center justify-center sm:flex-row-reverse sm:gap-48 sm:h-[calc(100vh-12vh)]">
+        <div className="h-[calc(100vh-12vh)] flex flex-col items-center justify-center sm:flex-row-reverse sm:gap-48">
             <div className="aspect-square w-5/6 sm:w-1/2 sm:aspect-auto">
                 <img src={pair_programming} alt="" />
             </div>
@@ -15,9 +15,9 @@ function HeroBanner() {
                     <span className="sm:text-2xl">Project Coding Hub is the right place to find the right project to build</span>
                 </div>
                 
-                    <Link to={"signup"} className="bg-orange-300 w-full p-2 rounded-md sm:w-3/6">
-                        <button >Join Now</button>
-                    </Link>
+                <Link to={"signup"} className="bg-orange-300 w-full p-2 rounded-md sm:w-3/6 border-[1px] border-black">
+                    <button >Join Now</button>
+                </Link>
             </div>
         </div>
     )

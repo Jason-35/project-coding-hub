@@ -9,7 +9,7 @@ import COMMUNITY from "../assets/friends_online.svg"
 
 function LandingPage() {
     return (
-    <div>
+    <div className="font-inter">
         <Navbar />  
         <HeroBanner /> 
         <ChipBanner />     
