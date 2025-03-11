@@ -21,7 +21,7 @@ function FormInput<T extends Record<string, any>>({error, register, registerName
         setShowText(!showText)
     }
     return (
-    <>
+    <div>
         <div className={`flex ${error ? "focus-within:border-red-500" : "focus-within:border-orange-400"} border-2 rounded-lg border-transparent`}>
             
             <div className="p-2 flex justify-center items-center bg-black rounded-l-lg">
@@ -52,8 +52,8 @@ function FormInput<T extends Record<string, any>>({error, register, registerName
 
             
         </div>
-        {error && <div className="text-red-500">{errorMsg}</div>}
-    </>
+        {error && <div className="text-red-500 text-sm">{errorMsg}</div>}
+    </div>
   )
 }
 
