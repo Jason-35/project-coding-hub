@@ -4,17 +4,14 @@ import { Link, useNavigate } from "react-router-dom"
 import FormInput from "../FormInput/FormInput"
 import FormHeader from "../FormHeader/FormHeader"
 import axios from "axios"
+import { LoginFormValue } from "../../types/AuthenticationTypes"
 
 function LoginForm() {
-    type FormValue = {
-        username: string,
-        password: string
-    }
     
-    const { register, handleSubmit, formState: { errors } } = useForm<FormValue>()
+    const { register, handleSubmit, formState: { errors } } = useForm<LoginFormValue>()
     const navigate = useNavigate()
 
-    const formSubmit = (data: FormValue) => {
+    const formSubmit = (data: LoginFormValue) => {
         console.log("Submit form", data)
         axios.post("http://localhost:8080/auth/login", data).then((res) => {
             localStorage.setItem("userInfo", JSON.stringify(res.data.userInfo))
@@ -31,7 +28,7 @@ function LoginForm() {
             
             <FormHeader content={"Sign in to your account"}/>
 
-            <FormInput<FormValue>
+            <FormInput<LoginFormValue>
                 error={errors.username}
                 register={register}
                 lucideIcon={<User color="white" size={18} />}
@@ -41,7 +38,7 @@ function LoginForm() {
                 options={{ required: true }}
             />
 
-            <FormInput<FormValue>
+            <FormInput<LoginFormValue>
                 error={errors.password}
                 register={register}
                 lucideIcon={<Lock color="white" size={18} />}

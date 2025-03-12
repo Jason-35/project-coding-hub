@@ -13,7 +13,7 @@ function LandingPage() {
         <Navbar />  
         <HeroBanner /> 
         <ChipBanner />     
-        <Banner colored={false} img={CODE_TYPING} reverse={true} heading={"Have Fun!"} content={"It's more fun coding with others Work together to make something great!"} />
+        <Banner colored={false} img={CODE_TYPING} reverse={true} heading={"Have Fun!"} content={"It's more fun coding with others Work"} />
         <Banner colored={true} img={CONNECT} reverse={false} heading={"Connect with developers"} content={"Converse with others \n Create new ideas \n Build them!"} />
         <Banner colored={false} img={COMMUNITY} reverse={true} heading={"Create Communities"} content={"Meet like minded individual \n Come together and build \n Learn and advance together!"} />
     </div>

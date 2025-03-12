@@ -13,7 +13,6 @@ export const getServerChannels = async(serverId: String) => {
 }
 
 export const getChannelMessages = async(channelId: String) => {
-    console.log("running joke")
     const token = getJwtToken()
     const config = {
         headers: {

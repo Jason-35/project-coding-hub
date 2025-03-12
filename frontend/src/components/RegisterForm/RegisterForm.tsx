@@ -6,17 +6,13 @@ import { Lock, User, Mail } from "lucide-react"
 import FormHeader from "../FormHeader/FormHeader"
 import FormInput from "../FormInput/FormInput"
 import axios from "axios"
+import { RegisterFormValue } from "../../types/AuthenticationTypes"
 function RegisterForm() {
 
-    type FormValue = {
-        username: string,
-        password: string,
-        email: string
-    }
-    const { register, handleSubmit, formState: { errors } } = useForm<FormValue>()
+    const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormValue>()
     const navigate = useNavigate()
     
-    const formSubmit = (data: FormValue) => {
+    const formSubmit = (data: RegisterFormValue) => {
         axios.post("http://localhost:8080/auth/signup", data).then((res) => {
             localStorage.setItem("userInfo", JSON.stringify(res.data.userInfo))
             localStorage.setItem("tokenInfo", JSON.stringify(res.data.tokenInfo))
@@ -31,7 +27,7 @@ function RegisterForm() {
             
             <FormHeader content={"Register your account"}/>
 
-            <FormInput<FormValue>
+            <FormInput<RegisterFormValue>
                 error={errors.username}
                 register={register}
                 lucideIcon={<User color="white" size={18} />}
@@ -41,7 +37,7 @@ function RegisterForm() {
                 options={{ required: true }}
             />
 
-            <FormInput<FormValue>
+            <FormInput<RegisterFormValue>
                 error={errors.email}
                 register={register}
                 lucideIcon={<Mail color="white" size={18} />}
@@ -58,7 +54,7 @@ function RegisterForm() {
                     }}
             />
 
-            <FormInput<FormValue>
+            <FormInput<RegisterFormValue>
                 error={errors.password}
                 register={register}
                 lucideIcon={<Lock color="white" size={18} />}
