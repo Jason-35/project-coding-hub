@@ -5,19 +5,16 @@ import { Lock, User, Mail } from "lucide-react"
 
 import FormHeader from "../FormHeader/FormHeader"
 import FormInput from "../FormInput/FormInput"
-import axios from "axios"
 import { RegisterFormValue } from "../../types/AuthenticationTypes"
+import { registerUser } from "../../httpRequest/authRequest"
 function RegisterForm() {
 
     const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormValue>()
     const navigate = useNavigate()
     
-    const formSubmit = (data: RegisterFormValue) => {
-        axios.post("http://localhost:8080/auth/signup", data).then((res) => {
-            localStorage.setItem("userInfo", JSON.stringify(res.data.userInfo))
-            localStorage.setItem("tokenInfo", JSON.stringify(res.data.tokenInfo))
-            navigate("/u/dashboard")
-        })
+    const formSubmit = async(data: RegisterFormValue) => {
+        await registerUser(data)
+        navigate("/u/dashboard")
     }
     return (
         <form

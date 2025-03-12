@@ -3,21 +3,17 @@ import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom"
 import FormInput from "../FormInput/FormInput"
 import FormHeader from "../FormHeader/FormHeader"
-import axios from "axios"
 import { LoginFormValue } from "../../types/AuthenticationTypes"
+import { loginUser } from "../../httpRequest/authRequest"
 
 function LoginForm() {
     
     const { register, handleSubmit, formState: { errors } } = useForm<LoginFormValue>()
     const navigate = useNavigate()
 
-    const formSubmit = (data: LoginFormValue) => {
-        console.log("Submit form", data)
-        axios.post("http://localhost:8080/auth/login", data).then((res) => {
-            localStorage.setItem("userInfo", JSON.stringify(res.data.userInfo))
-            localStorage.setItem("tokenInfo", JSON.stringify(res.data.tokenInfo))
-            navigate("/u/dashboard")
-        })
+    const formSubmit = async(data: LoginFormValue) => {
+        await loginUser(data)
+        navigate("/u/dashboard")
     }
 
     return (
