@@ -23,3 +23,4 @@ export const getServerMembers = async(serverId: String) => {
         const response = await axios.get(`http://localhost:8080/server/get/${serverId}/members`, config)
         return response.data
 }
+
