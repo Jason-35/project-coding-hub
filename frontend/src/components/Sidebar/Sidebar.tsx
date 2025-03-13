@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import Inbox from "../Inbox/Inbox"
-import ServerIcon from "../../features/projectServer/component/ServerIcon"
+import ServerIcon from "../ServerIcon/ServerIcon"
 import UserProfile from "../UserProfile/UserProfile"
 import CreateServer from "../../features/server/component/CreateServer"
 import Tooltip from "../Tooltip/Tooltip"

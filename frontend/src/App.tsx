@@ -6,7 +6,7 @@ import DashboardPage from "./pages/DashboardPage";
 import ProjectBoard from "./pages/ProjectBoard";
 import PrivateRoute from "./features/auth/component/PrivateRoute";
 import './index.css'
-import ServerPage from "./features/projectServer/component/ServerPage";
+import ServerPage from "./pages/ServerPage";
 import Chat from "./features/channels/component/Chat";
 
 function App() {
