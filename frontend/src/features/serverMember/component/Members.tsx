@@ -1,10 +1,6 @@
 import MemberCard from "./MemberCard"
-import kitty from "../../../assets/kitty.png"
-import jk from "../../../assets/jumpking.jpg"
 import { useEffect, useState } from "react"
-import axios from "axios"
 import { useParams } from "react-router-dom"
-import { getJwtToken } from "../../auth/util/util"
 import { getServerMembers } from "../../../httpRequest/ServerRequest"
 import { useWebSocket } from "../../ws/Ws"
 function Members() {
