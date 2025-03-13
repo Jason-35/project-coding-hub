@@ -1,7 +1,7 @@
 import { XIcon } from "lucide-react"
 import InboxCard from "./InboxCard"
 import { useContext } from "react"
-import { InboxContext } from "../../../context/InboxContext"
+import { InboxContext } from "../../context/InboxContext"
 
 function Inbox() {
     const inboxItem = useContext(InboxContext) 

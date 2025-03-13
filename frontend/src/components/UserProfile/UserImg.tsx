@@ -1,5 +1,5 @@
 import kitty from "../../../assets/kitty.png"
-import { getUserInfo } from "../../auth/util/util"
+import { getUserInfo } from "../../features/auth/util/util"
 
 function UserImg() {
     let profileImg = false

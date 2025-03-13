@@ -1,6 +1,6 @@
 import axios from "axios"
-import { getJwtToken, getUserInfo } from "../../auth/util/util"
-import { useWebSocket } from "../../ws/Ws"
+import { getJwtToken, getUserInfo } from "../../features/auth/util/util"
+import { useWebSocket } from "../../features/ws/Ws"
 
 type InboxCardType = {
     senderId: number | undefined,

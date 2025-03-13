@@ -2,7 +2,7 @@ import { CompassIcon, Plus } from "lucide-react"
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-import Inbox from "../features/user/component/Inbox"
+import Inbox from "./Inbox/Inbox"
 import ServerIcon from "../features/projectServer/component/ServerIcon"
 import UserProfile from "./UserProfile/UserProfile"
 import CreateServer from "../features/server/component/CreateServer"

@@ -1,9 +1,9 @@
 import { UserIcon, InboxIcon, UsersIcon, LogOutIcon } from "lucide-react"
 import { useNavigate } from "react-router-dom"
-import { getUserInfo } from "../../auth/util/util"
+import { getUserInfo } from "../../features/auth/util/util"
 import { useContext } from "react"
-import { InboxContext } from "../../../context/InboxContext"
-import MenuItem from "../../../components/MenuItem/MenuItem"
+import { InboxContext } from "../../context/InboxContext"
+import MenuItem from "../MenuItem/MenuItem"
 
 function UserMenu({showMenu, setShowMenu} : { showMenu: boolean, setShowMenu: React.Dispatch<React.SetStateAction<boolean>> }) {
 

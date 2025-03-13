@@ -1,6 +1,6 @@
 import { useState } from "react"
-import UserImg from "../../features/user/component/UserImg"
-import UserMenu from "../../features/user/component/UserMenu"
+import UserImg from "./UserImg"
+import UserMenu from "../UserMenu/UserMenu"
 
 function UserProfile() {
 
