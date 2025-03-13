@@ -1,6 +1,6 @@
 import { Outlet, useParams } from "react-router-dom"
 import Channels from "../components/Channel/Channels"
-import Members from "../features/serverMember/component/Members"
+import Members from "../components/Members/Members"
 import { useEffect, useState } from "react"
 import { getServerName } from "../httpRequest/ServerRequest"
 

@@ -1,8 +1,8 @@
-import MemberCard from "./MemberCard"
+import MemberCard from "../MemberCard/MemberCard"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { getServerMembers } from "../../../httpRequest/ServerRequest"
-import { useWebSocket } from "../../ws/Ws"
+import { getServerMembers } from "../../httpRequest/ServerRequest"
+import { useWebSocket } from "../../features/ws/Ws"
 function Members() {
     const param = useParams()
     const [members, setMembers] = useState<string[]>([])
@@ -27,7 +27,7 @@ function Members() {
     }, [webSocketClient])
 
   return (
-    <div className="w-1/6 border-2 p-2 font-inter">
+    <div className="w-1/6 p-2 font-inter">
         {members.map((usr, index) => (
             <MemberCard key={index} name={usr}/>
         ))}
