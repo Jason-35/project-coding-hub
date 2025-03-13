@@ -1,42 +1,30 @@
 import Post from "../features/projectServer/component/Post"
-import flappy from "../assets/flappy.png"
-import kitty from "../assets/kitty.png"
-import jumpKing from "../assets/jumpking.jpg"
 import { useEffect, useState } from "react"
-import axios from "axios"
-import { getJwtToken } from "../features/auth/util/util"
+import { Server } from "../types/ServerTypes"
+import { getAllServers } from "../httpRequest/ServerRequest"
 
 function ProjectBoard() {
-    type Server = {
-        id: string,
-        img: string,
-        name: string,
-        tags: string[],
-        status: boolean,
-        description: string
-    }
+    
     const [servers, setServer] = useState<Server[]>([])
+
+    const fetchAllServer = async() => {
+        const res = await getAllServers()
+        setServer(res.data)
+    }
+
     useEffect(() => {
-        const token = getJwtToken()
-        const config = {
-            headers: {
-              Authorization: `Bearer ${token}`
-            }
-        };
-        axios.get("http://localhost:8080/server/get/all", config).then((res) => {
-            console.log(res.data)
-            setServer(res.data)
-        })
+        fetchAllServer()
     }, [])
 
   return (
-    <div className="flex-1 flex flex-col overflow-scroll ">
+    <div className="flex-1 flex flex-col overflow-scroll font-inter">
+
         <div className="border-b-2 border-black mb-8">
-            <div className="h-[124px] w-fit ml-32 text-[48px] flex items-center ">
-                Project
-                Postings
+            <div className="h-[124px] w-fit ml-32 text-5xl font-semibold flex items-center ">
+                FIND THE RIGHT PROJECT
             </div>
         </div>
+        
         <div className="p-10 flex flex-wrap gap-16">
             {
                 servers.map((server) => (

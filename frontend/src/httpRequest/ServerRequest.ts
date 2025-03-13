@@ -24,3 +24,15 @@ export const getServerMembers = async(serverId: String) => {
         return response.data
 }
 
+export const getAllServers = async() => {
+    const token = getJwtToken()
+        const config = {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+        };
+        const res = await axios.get("http://localhost:8080/server/get/all", config)
+
+        return res
+}
+
