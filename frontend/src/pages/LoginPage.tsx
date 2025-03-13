@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import Logo from "../components/Logo"
+import Logo from "../components/Logo/Logo"
 import LoginForm from "../components/LoginForm/LoginForm"
 
 function LoginPage() {

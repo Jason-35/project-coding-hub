@@ -1,6 +1,6 @@
 import { XIcon, CameraIcon } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
-import Chip from "../../../components/Chip"
+import Chip from "../../../components/Chip/Chip"
 import { removeValue } from "../util/Util"
 import { useForm } from "react-hook-form"
 import axios from "axios"

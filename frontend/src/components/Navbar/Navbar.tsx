@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Menu } from "lucide-react"
 import MobileMenu from "./MobileMenu"
 
-import Logo from "../../components/Logo"
+import Logo from "../Logo/Logo"
 
 function Navbar() {
     const [showMobileNav, setShowMobileNav] = useState<boolean>(false)

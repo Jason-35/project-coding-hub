@@ -2,18 +2,18 @@ import { CompassIcon, Plus } from "lucide-react"
 import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-import Inbox from "./Inbox/Inbox"
-import ServerIcon from "../features/projectServer/component/ServerIcon"
-import UserProfile from "./UserProfile/UserProfile"
-import CreateServer from "../features/server/component/CreateServer"
-import Tooltip from "./Tooltip/Tooltip"
-import TooltipContent from "./Tooltip/TooltipContent"
-import Divider from "./Divider/Divider"
+import Inbox from "../Inbox/Inbox"
+import ServerIcon from "../../features/projectServer/component/ServerIcon"
+import UserProfile from "../UserProfile/UserProfile"
+import CreateServer from "../../features/server/component/CreateServer"
+import Tooltip from "../Tooltip/Tooltip"
+import TooltipContent from "../Tooltip/TooltipContent"
+import Divider from "../Divider/Divider"
 
-import { InboxContext } from "../context/InboxContext"
+import { InboxContext } from "../../context/InboxContext"
 
-import { Server } from "../types/ServerTypes"
-import { getUserServer } from "../httpRequest/UserRequest"
+import { Server } from "../../types/ServerTypes"
+import { getUserServer } from "../../httpRequest/UserRequest"
 
 function Sidebar() {
     const inboxItem = useContext(InboxContext)

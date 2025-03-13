@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-import Logo from "../components/Logo"
+import Logo from "../components/Logo/Logo"
 
 import RegisterForm from "../components/RegisterForm/RegisterForm"
 

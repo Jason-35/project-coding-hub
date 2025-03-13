@@ -1,4 +1,4 @@
-import Logo from "../Logo"
+import Logo from "../Logo/Logo"
 import { X } from "lucide-react"
 import { Link } from "react-router-dom"
 

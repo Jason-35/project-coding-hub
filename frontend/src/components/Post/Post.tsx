@@ -1,4 +1,4 @@
-import Chip from "../Chip"
+import Chip from "../Chip/Chip"
 import { getUserInfo } from "../../features/auth/util/util";
 import { useWebSocket } from "../../features/ws/Ws";
 

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import PositionBlock from "../../../components/PositionBlock";
-import Sidebar from "../../../components/Sidebar"
+import PositionBlock from "../../../components/Sidebar/PositionBlock";
+import Sidebar from "../../../components/Sidebar/Sidebar"
 import { Outlet, Navigate} from "react-router-dom"
 import { isJwtPresent, isUserPresent } from "../util/util";
 import { WebSocketContextProvider } from "../../ws/Ws";
-import { InboxContext, InboxProvider } from "../../../context/InboxContext";
+import { InboxProvider } from "../../../context/InboxContext";
 
 function PrivateRoute() {
     const [isLogin, setIsLogin] = useState<boolean>(false)

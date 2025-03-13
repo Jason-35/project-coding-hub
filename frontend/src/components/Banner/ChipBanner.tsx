@@ -1,4 +1,4 @@
-import Chip from "../../components/Chip"
+import Chip from "../Chip/Chip"
 
 function ChipBanner() {
     const genre: string[] = ["python", "java", "go", "javascript", "react", "vue", "angular", "rust", "ruby","c", "php", "postgres", "mongodb", "c#", "react", "springboot", "next.js", "c++", "Show More"]
