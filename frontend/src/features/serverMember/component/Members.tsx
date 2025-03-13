@@ -6,16 +6,17 @@ import { useWebSocket } from "../../ws/Ws"
 function Members() {
     const param = useParams()
     const [members, setMembers] = useState<string[]>([])
-    const webSocketClient = useWebSocket()
+    
     const fetchMembers = async() => {
         const res = await getServerMembers(param.serverId!);
         setMembers(res);
     }
-
+    
     useEffect(() => {
         fetchMembers()
     }, [])
-
+    
+    const webSocketClient = useWebSocket()
     useEffect(() => {
         if(webSocketClient) {
             webSocketClient.subscribe(`/topic/newMember/${param.serverId}`, (message) => {
@@ -26,7 +27,7 @@ function Members() {
     }, [webSocketClient])
 
   return (
-    <div className="w-1/6 pr-2">
+    <div className="w-1/6 border-2 p-2 font-inter">
         {members.map((usr, index) => (
             <MemberCard key={index} name={usr}/>
         ))}
