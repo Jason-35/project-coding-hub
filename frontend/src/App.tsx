@@ -20,7 +20,7 @@ function App() {
             <Route path="dashboard" element={<DashboardPage/>}></Route>
             <Route path="projectBoard" element={<ProjectBoard/>}></Route>
             <Route path=":serverId" element={<ServerPage/>}>
-                <Route index path=":channelId" element={<div><Chat /></div>} />
+                <Route index path=":channelId" element={<Chat />} />
             </Route>
         </Route>
       </Routes>

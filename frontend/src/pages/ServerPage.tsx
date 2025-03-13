@@ -20,7 +20,7 @@ function ServerPage() {
     return (
         <div className='flex-1 flex'>
             <Channels serverName={serverName}/>
-            <div className="flex-1 border-l-2 border-r-2"><Outlet /></div>
+            <div className="flex-1"><Outlet /></div>
             <Members />
         </div>
   )
