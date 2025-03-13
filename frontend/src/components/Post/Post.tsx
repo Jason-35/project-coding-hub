@@ -1,6 +1,6 @@
-import Chip from "../../../components/Chip"
-import { getUserInfo } from "../../auth/util/util";
-import { useWebSocket } from "../../ws/Ws";
+import Chip from "../Chip"
+import { getUserInfo } from "../../features/auth/util/util";
+import { useWebSocket } from "../../features/ws/Ws";
 
 type PostProps = {
     title: string,

@@ -1,4 +1,4 @@
-import Post from "../features/projectServer/component/Post"
+import Post from "../components/Post/Post"
 import { useEffect, useState } from "react"
 import { Server } from "../types/ServerTypes"
 import { getAllServers } from "../httpRequest/ServerRequest"
