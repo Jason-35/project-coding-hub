@@ -7,7 +7,7 @@ import ProjectBoard from "./pages/ProjectBoard";
 import PrivateRoute from "./features/auth/component/PrivateRoute";
 import './index.css'
 import ServerPage from "./pages/ServerPage";
-import Chat from "./features/channels/component/Chat";
+import Chat from "./components/Chat/Chat";
 
 function App() {
   return (
