@@ -12,10 +12,10 @@ function Channel({channelName, channelId} : ChannelProps) {
         navigate(`${ch}`)
     }
     return (
-        <div className="border-2 p-2 rounded-md hover:bg-gray-400 hover:cursor-pointer flex justify-between"
+        <div className="border-2 border-black p-2 rounded-md hover:bg-gray-400 hover:cursor-pointer flex justify-between"
             onClick={() => switchChannel(channelId)}>
             {channelName}
-            <Settings />
+            <Settings className="border-2 border-transparent"/>
         </div>  
     )
 }

@@ -48,9 +48,9 @@ function Channels({serverName} : {serverName: string}) {
                 </div>
 
                 <div className="overflow-scroll flex flex-col gap-2 px-2">
-                  {channels.map((ch, index) => (
-                    <Channel key={index} channelId={ch.channelId} channelName={ch.channelName} />
-                  ))}
+                    {channels.map((ch, index) => (
+                        <Channel key={index} channelId={ch.channelId} channelName={ch.channelName} />
+                    ))}
                 </div>
             </div>
     )
