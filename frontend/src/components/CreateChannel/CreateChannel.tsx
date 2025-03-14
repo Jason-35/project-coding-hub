@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import { useWebSocket } from "../../ws/Ws";
-import { ChannelFormValue } from "../../../types/ChannelTypes";
-import ChannelTypeCard from "../../../components/ChannelTypeCard/ChannelTypeCard";
-import CreateChannelInput from "../../../components/CreateChannelInput/CreateChannelInput";
-import CreateChannelHeader from "../../../components/CreateChannelHeader/CreateChannelHeader";
+import { useWebSocket } from "../../features/ws/Ws";
+import { ChannelFormValue } from "../../types/ChannelTypes";
+import ChannelTypeCard from "../ChannelTypeCard/ChannelTypeCard";
+import CreateChannelInput from "../CreateChannelInput/CreateChannelInput";
+import CreateChannelHeader from "../CreateChannelHeader/CreateChannelHeader";
 
 function CreateChannel({show, setShow}:{show: boolean, setShow: React.Dispatch<React.SetStateAction<boolean>>}) {
     
