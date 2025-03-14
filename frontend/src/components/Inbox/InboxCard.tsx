@@ -1,20 +1,11 @@
 import axios from "axios"
 import { getJwtToken, getUserInfo } from "../../auth/util/util"
 import { useWebSocket } from "../../context/Ws"
+import { InboxCardType } from "../../types/InboxTypes"
 
-type InboxCardType = {
-    senderId: number | undefined,
-    sender: string | undefined,
-    project: string | undefined,
-    projectId: string | undefined,
-    date: string | undefined,
-    mailType: string | undefined,
-    senderName: string | undefined,
-    serverName: string | undefined,
-    response: string | undefined
-}
 
-type Mail = {
+
+interface Mail {
     mail: InboxCardType
 }
 
@@ -53,7 +44,7 @@ function InboxCard({mail} : Mail) {
             }
             webSocketClient.send(`/app/request/response`, {}, JSON.stringify(payload))
             if (response === "accept") {
-                webSocketClient.send(`/app/testing`, {}, "farq")
+                webSocketClient.send(`/app/testing`, {}, "accept")
             }
         }
     }
