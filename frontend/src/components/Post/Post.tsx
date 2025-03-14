@@ -75,7 +75,7 @@ function Post({title, genre, description, icon, open, members, id} : PostProps) 
         </div>
         : <></>}
 
-        <div className="overflow-scroll max-h-36 scrollbar-hidden">
+        <div className="max-h-36 scrollbar-hidden break-words">
             {description}
         </div>
     </div>
