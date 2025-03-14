@@ -1,6 +1,6 @@
 import { UserIcon, InboxIcon, UsersIcon, LogOutIcon } from "lucide-react"
 import { useNavigate } from "react-router-dom"
-import { getUserInfo } from "../../features/auth/util/util"
+import { getUserInfo } from "../../auth/util/util"
 import { useContext } from "react"
 import { InboxContext } from "../../context/InboxContext"
 import MenuItem from "../MenuItem/MenuItem"

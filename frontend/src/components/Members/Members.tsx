@@ -2,7 +2,7 @@ import MemberCard from "../MemberCard/MemberCard"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { getServerMembers } from "../../httpRequest/ServerRequest"
-import { useWebSocket } from "../../features/ws/Ws"
+import { useWebSocket } from "../../context/Ws"
 function Members() {
     const param = useParams()
     const [members, setMembers] = useState<string[]>([])

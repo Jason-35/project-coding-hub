@@ -3,7 +3,7 @@ import PositionBlock from "../../../components/Sidebar/PositionBlock";
 import Sidebar from "../../../components/Sidebar/Sidebar"
 import { Outlet, Navigate} from "react-router-dom"
 import { isJwtPresent, isUserPresent } from "../util/util";
-import { WebSocketContextProvider } from "../../ws/Ws";
+import { WebSocketContextProvider } from "../../../context/Ws";
 import { InboxProvider } from "../../../context/InboxContext";
 
 function PrivateRoute() {

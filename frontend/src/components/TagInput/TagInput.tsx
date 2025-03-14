@@ -1,5 +1,5 @@
 import { useRef } from "react"
-import { removeValue } from "../../features/server/util/Util"
+import { removeValue } from "../CreateServer/util/Util"
 import Chip from "../Chip/Chip"
 
 interface TagInputProps {

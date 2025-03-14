@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import { useWebSocket } from "../../features/ws/Ws"
+import { useWebSocket } from "../../context/Ws"
 import { useEffect, useRef, useState } from "react"
 import { getChannelMessages } from "../../httpRequest/channelRequest"
 import { Message } from "../../types/ChatType"

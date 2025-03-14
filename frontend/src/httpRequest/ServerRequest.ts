@@ -1,5 +1,5 @@
 import axios from "axios"
-import { getJwtToken, getUserInfo } from "../features/auth/util/util";
+import { getJwtToken, getUserInfo } from "../auth/util/util";
 import { ServerFormValue } from "../types/ServerTypes";
 
 export const getServerName = async(serverId: String) => {

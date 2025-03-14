@@ -1,5 +1,5 @@
 import axios from "axios"
-import { getJwtToken } from "../features/auth/util/util";
+import { getJwtToken } from "../auth/util/util";
 
 export const getServerChannels = async(serverId: String) => {
     const token = getJwtToken()

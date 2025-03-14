@@ -4,7 +4,7 @@ import RegisterPage from "./pages/RegisterPage";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
 import ProjectBoard from "./pages/ProjectBoard";
-import PrivateRoute from "./features/auth/component/PrivateRoute";
+import PrivateRoute from "./auth/component/PrivateRoute";
 import './index.css'
 import ServerPage from "./pages/ServerPage";
 import Chat from "./components/Chat/Chat";

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import CreateChannel from "../CreateChannel/CreateChannel"
-import { useWebSocket } from "../../features/ws/Ws"
+import { useWebSocket } from "../../context/Ws"
 import { getServerChannels } from "../../httpRequest/channelRequest"
 import { ChannelType } from "../../types/ChannelTypes"
 import ChannelHeader from "../ChannelHeader/ChannelHeader"

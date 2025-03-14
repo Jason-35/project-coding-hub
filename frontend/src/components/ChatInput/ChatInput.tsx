@@ -1,8 +1,8 @@
 import { TriangleIcon } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { ChatForm } from "../../types/ChatType"
-import { useWebSocket } from "../../features/ws/Ws"
-import { getUserInfo } from "../../features/auth/util/util"
+import { useWebSocket } from "../../context/Ws"
+import { getUserInfo } from "../../auth/util/util"
 import { useParams } from "react-router-dom"
 
 function ChatInput() {

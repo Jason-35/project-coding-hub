@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import { useWebSocket } from "../../features/ws/Ws";
+import { useWebSocket } from "../../context/Ws";
 import { ChannelFormValue } from "../../types/ChannelTypes";
 import ChannelTypeCard from "../ChannelTypeCard/ChannelTypeCard";
 import CreateChannelInput from "../CreateChannelInput/CreateChannelInput";

@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
-import { useWebSocket } from "../features/ws/Ws";
+import { useWebSocket } from "./Ws";
 import { InboxCardType, InboxValue } from "../types/InboxTypes";
-import { getUserInfo } from "../features/auth/util/util";
+import { getUserInfo } from "../auth/util/util";
 import { getUserMail } from "../httpRequest/UserRequest";
 
 

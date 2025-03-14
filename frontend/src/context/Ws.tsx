@@ -14,7 +14,6 @@ export const WebSocketContextProvider = ({children} : {children: ReactNode}) => 
         client.connect(
             {},
             () => {
-              console.log("Connected to WebSocket");
               setStompClient(client);
             },
             (error: unknown) => {
