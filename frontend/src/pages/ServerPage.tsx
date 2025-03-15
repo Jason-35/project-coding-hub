@@ -15,7 +15,7 @@ function ServerPage() {
 
     useEffect(() => {
        fetchServerName() 
-    }, [])
+    }, [param.serverId])
 
     return (
         <div className='flex-1 flex'>

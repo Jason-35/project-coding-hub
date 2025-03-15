@@ -14,7 +14,6 @@ function InboxCard({mail} : Mail) {
 
     // The axios post tells server to let the user join if the user accepts the join request 
     // websocket is just to dynamically update inbox for accept or decline
-    // TODO: Redundant and need refactoring
     const handleResponse = (response: string) => {
         if (response === "accept") {
             const token = getJwtToken()
@@ -27,9 +26,7 @@ function InboxCard({mail} : Mail) {
                 userId: mail.senderId,
                 serverId: mail.projectId
             }
-            axios.post(`http://localhost:8080/server/join`, payload, config).then((res) => {
-                // console.log(res.data)
-            })
+            axios.post(`http://localhost:8080/server/join`, payload, config)
         }
 
         if(webSocketClient) {

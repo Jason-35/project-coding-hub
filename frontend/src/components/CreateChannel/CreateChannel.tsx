@@ -15,7 +15,6 @@ function CreateChannel({show, setShow}:{show: boolean, setShow: React.Dispatch<R
         defaultValues: {
             channelType: "text",
             channelName: "",
-            serverId: serverId
         }
     });
 
@@ -23,11 +22,10 @@ function CreateChannel({show, setShow}:{show: boolean, setShow: React.Dispatch<R
         let body = {
             "channelName" : data.channelName,
             "channelType" : data.channelType,
-            "serverId": data.serverId
+            "serverId": serverId
         }
 
         if (webSocketClient) {
-            console.log("sending!")
             webSocketClient.send(`/app/create/channel/${serverId}`, {}, JSON.stringify(body))
             setShow(false)
         }

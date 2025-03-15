@@ -9,7 +9,7 @@ import ChannelMenu from "../ChannelMenu/ChannelMenu"
 import Channel from "./Channel"
 
 function Channels({serverName} : {serverName: string}) {
-
+    const param = useParams()
     const [channels, setChannels] = useState<ChannelType[]>([])
     const [showMenu, setShowMenu] = useState(false)
     const [showCreateChannel, setShowCreateChannel] = useState(false)
@@ -21,16 +21,19 @@ function Channels({serverName} : {serverName: string}) {
         const serverChannels = await getServerChannels(serverId!)
         setChannels(serverChannels)
     }
-    
+
     useEffect(() => {
         fetchChannel()
+    }, [param.serverId])
+    
+    useEffect(() => {
         if(webSocketClient) {
             webSocketClient.subscribe(`/topic/create/channel/${serverId}`, (message) => {
                 setChannels((prevChannels) => [...prevChannels, JSON.parse(message.body)]);
             })
         }
         return () => webSocketClient?.unsubscribe(`/topic/create/channel/${serverId}`);
-    }, [webSocketClient])
+    }, [webSocketClient, param.serverId])
     
        
     return (

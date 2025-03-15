@@ -14,7 +14,6 @@ import com.projectcodingthub.project_coding_hub.channel.dto.ChannelDTO;
 import com.projectcodingthub.project_coding_hub.channel.dto.ChannelFormDTO;
 import com.projectcodingthub.project_coding_hub.channel.model.Channel;
 import com.projectcodingthub.project_coding_hub.channel.repository.ChannelRepository;
-import com.projectcodingthub.project_coding_hub.inbox.dto.ServerRequestDTO;
 import com.projectcodingthub.project_coding_hub.server.model.Server;
 import com.projectcodingthub.project_coding_hub.server.service.ServerService;
 
@@ -39,6 +38,7 @@ public class ChannelController {
     @GetMapping("/channel/getAll/{serverId}")
     public List<ChannelDTO> getAllChannelFromServer(@PathVariable String serverId){
         UUID serverUUID = UUID.fromString(serverId);
+        System.out.println(serverUUID);
         List<Channel> channels = channelRepository.findAllByServerId(serverUUID);
         List<ChannelDTO> serverChannels = new ArrayList<>();
         channels.forEach(channel -> serverChannels.add(new ChannelDTO(channel.getId(), channel.getChannelName())));
