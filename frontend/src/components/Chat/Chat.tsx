@@ -33,7 +33,7 @@ function Chat() {
             })
         }
         return () => webSocketClient?.unsubscribe(`/topic/channel/${param.channelId}`);
-    }, [webSocketClient])
+    }, [webSocketClient, param.channelId])
 
     return (
     <div className='flex flex-col h-screen border-r-2 border-black font-inter'>
@@ -41,8 +41,8 @@ function Chat() {
         
         <div className='flex-1 overflow-scroll'>
 
-            {messages.map((msg) => (
-                <MessageCard scroll={scrollTo} message={msg.message} userImg={msg.userName.charAt(0)} userName={msg.userName} />
+            {messages.map((msg, index) => (
+                <MessageCard key={index} scroll={scrollTo} message={msg.message} userImg={msg.userName.charAt(0)} userName={msg.userName} />
             ))}
 
         </div>
