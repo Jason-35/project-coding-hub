@@ -5,6 +5,7 @@ import { getChannelMessages } from "../../httpRequest/channelRequest"
 import { Message } from "../../types/ChatType"
 import ChatInput from "../ChatInput/ChatInput"
 import MessageCard from "../MessageCard/MessageCard"
+import { CompatClient, IMessage, StompSubscription } from "@stomp/stompjs"
 
 function Chat() {
 
@@ -12,6 +13,7 @@ function Chat() {
     const scrollTo = useRef<HTMLDivElement | null>(null);
     const param = useParams()
     const webSocketClient = useWebSocket()
+    const [client, setClient] = useState<StompSubscription | undefined>()
 
     const fetchMessage = async() => {
         let msgs = await getChannelMessages(param.channelId!)
@@ -26,13 +28,14 @@ function Chat() {
         scrollTo.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages])
 
+    const ChatCallback = (message:  IMessage) => {
+        setMessages((prevState) => [...prevState, JSON.parse(message.body)])
+    }
     useEffect(() => {
-        if(webSocketClient) {
-            webSocketClient.subscribe(`/topic/channel/${param.channelId}`, (message) => {
-                setMessages((prevState) => [...prevState, JSON.parse(message.body)])
-            })
-        }
-        return () => webSocketClient?.unsubscribe(`/topic/channel/${param.channelId}`);
+        const client = webSocketClient?.subscribe(`/topic/channel/${param.channelId}`, ChatCallback)
+        return () => {
+            client?.unsubscribe()
+        };
     }, [webSocketClient, param.channelId])
 
     return (
@@ -46,7 +49,6 @@ function Chat() {
             ))}
 
         </div>
-
         <ChatInput />
     </div>
   )

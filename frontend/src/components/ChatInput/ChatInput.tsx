@@ -9,6 +9,7 @@ function ChatInput() {
     const { register, handleSubmit, reset } = useForm<ChatForm>()
     const webSocketClient = useWebSocket()
     const param = useParams()
+    
     const formSubmit = (data: ChatForm) => {
         if (webSocketClient) {
             const usr = getUserInfo()
